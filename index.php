@@ -49,6 +49,10 @@
 			<?php 
 						
 				
+				echo "<div class=\"menu-left\">";
+				include("parti/main-menu.php");
+				echo "</div>"; 
+			
 				echo "<div class=\"content-right\">";
 				if (file_exists($content)) 
 				{
@@ -57,7 +61,6 @@
 				} 
 				echo "</div>";
 			
-				include("parti/main-menu.php"); 
 			
 				require("parti/footer.php");
 

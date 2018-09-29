@@ -1,7 +1,6 @@
 <?php
 
     $array_info = [
-        "id",
         "nome",
         "importo",
         "fatturato",
@@ -68,13 +67,16 @@
 			$id = $_POST['id'];
 			$p->selectPrestazioneById($id);
 			$p->modificaPrestazione($id, $nome, $importo, $fatturato, $medico_1, $medico_2, $medico_3, $medico_4, $medico_5, $perc_medico_1, $perc_medico_2, $perc_medico_3, $perc_medico_4, $perc_medico_5);
+		
+			echo "<script>alert('Salvataggio prestazione completato');</script>";
+			echo "<script>window.location.replace('?page=visualizza-prestazione&id_prestazione=".$_POST['id']."');</script>";
 		}else{
 			$p->aggiungiPrestazione($nome, $importo, $fatturato, $medico_1, $medico_2, $medico_3, $medico_4, $medico_5, $perc_medico_1, $perc_medico_2, $perc_medico_3, $perc_medico_4, $perc_medico_5);
+					
+		
+			echo "<script>alert('Aggiunta prestazione completata');</script>";
 		}
-		
-		
-		echo "<script>alert('Salvataggio prestazione completato');</script>";
-		echo "<script>window.location.replace('?page=visualizza-prestazione&id_prestazione=".$_POST['id']."');</script>";
+
 		
 		
     }

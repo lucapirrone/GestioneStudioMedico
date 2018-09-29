@@ -46,7 +46,7 @@ class Prestazione{
 			echo("Errore: ".mysqli_error($this->conn));
 			return false;
 		}
-	}
+	} 
 	public function modificaPrestazione($id, $nome, $importo, $fatturato, $medico_1, $medico_2, $medico_3, $medico_4, $medico_5, $perc_medico_1, $perc_medico_2, $perc_medico_3, $perc_medico_4, $perc_medico_5){
 		if($stmt = $this->conn->prepare("UPDATE PRESTAZIONI SET NOME=?, IMPORTO=?, FATTURATO=?, MEDICO_1=?, MEDICO_2=?, MEDICO_3=?, MEDICO_4=?, MEDICO_5=?, PERC_MEDICO_1=?, PERC_MEDICO_2=?, PERC_MEDICO_3=?, PERC_MEDICO_4=?, PERC_MEDICO_5=? WHERE ID = ? AND KCO = ?")){
 			$stmt->bind_param("sissssssiiiiiii", $nome, $importo, $fatturato, $medico_1, $medico_2, $medico_3, $medico_4, $medico_5, $perc_medico_1, $perc_medico_2, $perc_medico_3, $perc_medico_4, $perc_medico_5, $this->id, $_SESSION['company_id']);
@@ -75,5 +75,7 @@ class Prestazione{
 	}
 	
 }
+
+
 
 ?>

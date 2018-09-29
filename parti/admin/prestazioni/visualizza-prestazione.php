@@ -12,11 +12,11 @@
 	 				  
 		<!-- RIGA 1 -->
 	   
-	   <li class="fill hidden" style="width: unset;"> 
-	   		<i class="delete fas fa-edit" style="float: right; display: none" title="Modifica" id="modifica_prestazione"></i>
+	   <li class="fill hidden" style="width: unset; float: left;"> 
+	   		<i class="delete fas fa-edit" style="float: left; display: none" title="Modifica" id="modifica_prestazione"></i>
 	   </li>
 		
-	   <li class="fill" style="width: 50%; float: right;">
+	   <li class="fill" style="width: 50%; float: left;">
 		   	<label class="description">Prestazione</label>
 			<select class="element select big" name="id_prestazione" id="prestazione">
 				<option value="">SELEZIONA LA PRESTAZIONE</option>
@@ -30,15 +30,19 @@
 			</select>
 	   	</li>
 	   
-	    <li class="fill" style="30%">
+	   <li class="fill hidden" style="width: unset; float: left;"> 
+	   		<a href="?page=aggiungi-prestazione"><i class="delete fas fa-plus" title="Aggiungi" id="aggiungi_prestazione"></i></a>
+	   </li>
+	   
+	    <li class="fill" style="width: 20%; float: left;">
 		   <label class="description">Fattura</label>
-			<input name="fatturato" type="text" id="fatturato"/> 
+			<input readonly name="fatturato" type="text" id="fatturato"/> 
 		  
-	  </li>
+	  	</li>
 	   
 	   <li class="fill" style="width:20%; float:left;">
 		   <label class="description" for="element_1">Importo</label>
-		   <input name="importo" type="text" id="importo"/> 
+		   <input readonly name="importo" type="text" id="importo"/> 
 		</li>
 	   
 	   <div id="box_medici_prev" class="fill" style="width: 70%; float: left; display: none">
