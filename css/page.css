@@ -11,7 +11,11 @@
 body,
 html {
   font-family: 'RobotoDraft', 'Roboto', 'Helvetica Neue, Helvetica, Arial', sans-serif;
+<<<<<<< HEAD
   background-color: #F3F3F3 !important;
+=======
+  background-color: #FBFBFB !important;
+>>>>>>> GestioneStudioMedico/master
   height: unset !important;
   margin: 0;
 }
@@ -27,6 +31,14 @@ fo html {
 }
 /*//////////////////////////////////////////////////////////////////
 [ testi ]*/
+<<<<<<< HEAD
+=======
+ul,
+li {
+  margin: 0px;
+  list-style-type: none;
+}
+>>>>>>> GestioneStudioMedico/master
 .errorcode {
   color: red;
 }
@@ -214,6 +226,7 @@ fo html {
 }
 /*//////////////////////////////////////////////////////////////////
 [ header/menu principale ]*/
+<<<<<<< HEAD
 .title-header {
   font-size: 1.2em;
   margin-bottom: 8px !important;
@@ -228,6 +241,19 @@ fo html {
   height: 100px;
   width: 100%;
   display: table;
+=======
+.position-page {
+  vertical-align: middle;
+  line-height: 75px;
+  border: 0;
+  margin: 0 0 0 30px;
+  color: #666666;
+}
+#heading {
+  background: #fff 50% 50% no-repeat;
+  color: white;
+  height: 75px;
+>>>>>>> GestioneStudioMedico/master
   position: relative;
   border-bottom: 1px solid #e6e6e6;
 }
