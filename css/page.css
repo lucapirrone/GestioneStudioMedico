@@ -1,5 +1,5 @@
 /* Variabili */
-/*///////////////////////////////////////////////////////////////////
+/*//////////////////////////////////////////////////////////////////
 [ general ]*/
 *,
 :after,
@@ -10,7 +10,7 @@
 }
 body,
 html {
-  font-family: Poppins-Regular, sans-serif;
+  font-family: 'RobotoDraft', 'Roboto', 'Helvetica Neue, Helvetica, Arial', sans-serif;
   background-color: #FBFBFB !important;
   height: unset !important;
   margin: 0;
@@ -27,31 +27,6 @@ fo html {
 }
 /*//////////////////////////////////////////////////////////////////
 [ testi ]*/
-a {
-  font-family: 'RobotoDraft', 'Roboto', 'Helvetica Neue, Helvetica, Arial', sans-serif;
-  line-height: 1.7;
-  color: #666666;
-  margin: 0px;
-  transition: all 0.4s;
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-}
-a:focus {
-  outline: none !important;
-}
-a:hover {
-  text-decoration: none;
-}
-h2 {
-  margin: 0px;
-  font-family: 'RobotoDraft', 'Roboto', 'Helvetica Neue, Helvetica, Arial';
-}
-p {
-  color: #666666;
-  line-height: 1.7;
-  margin: 0px;
-}
 ul,
 li {
   margin: 0px;
@@ -241,14 +216,19 @@ li {
 }
 /*//////////////////////////////////////////////////////////////////
 [ header/menu principale ]*/
+.position-page {
+  vertical-align: middle;
+  line-height: 75px;
+  border: 0;
+  margin: 0 0 0 30px;
+  color: #666666;
+}
 #heading {
-  background: #0094D4 50% 50% no-repeat;
+  background: #fff 50% 50% no-repeat;
   color: white;
-  height: 20px;
+  height: 75px;
   position: relative;
-  -webkit-box-shadow: inset 0px -10px 15px -15px rgba(0, 0, 0, 0.55);
-  -moz-box-shadow: inset 0px -10px 15px -15px rgba(0, 0, 0, 0.55);
-  box-shadow: inset 0px -10px 15px -15px rgba(0, 0, 0, 0.55);
+  border-bottom: 1px solid #e6e6e6;
 }
 #navigation {
   background: white;
