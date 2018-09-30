@@ -541,11 +541,11 @@ input:-ms-input-placeholder {
 .form-style-7 {
   margin: 0px auto;
   background: #fff;
-  border-radius: 2px;
   padding: 20px;
   text-align: center;
   display: inline-block;
   width: 100%;
+  border: 1px solid #e6e6e6;
 }
 .form-style-7 ul {
   list-style: none;
