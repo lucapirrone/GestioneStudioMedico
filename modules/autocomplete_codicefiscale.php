@@ -18,7 +18,7 @@
 		<input name="id_paziente" id="id_paziente" hidden>
 	</div>
 	
-   <span>Inserisci il codice fiscale</span>         
+   <span>Seleziona il paziente</span>         
 </li>
 
 <?php 

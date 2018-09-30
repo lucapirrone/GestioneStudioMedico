@@ -89,11 +89,11 @@
 
 	function login($utente, $password, $codicestudio, $mysqli) {
 		//Lettura dell'id della compagnia dato il codicestudio
-		if ($stmt = $mysqli->prepare("SELECT ID FROM COMPANY WHERE ID = ? LIMIT 1")) { 
+		if ($stmt = $mysqli->prepare("SELECT ID, NOME, LOGO FROM COMPANY WHERE ID = ? LIMIT 1")) { 
 		 $stmt->bind_param('i', $codicestudio); // esegue il bind del parametro '$email'.
 		 if($stmt->execute()){ // esegue la query appena creata.
 			 $stmt->store_result();
-			 $stmt->bind_result($company_id); // recupera il risultato della query e lo memorizza nelle relative variabili.
+			 $stmt->bind_result($company_id, $nomec, $logoc); // recupera il risultato della query e lo memorizza nelle relative variabili.
 			 $stmt->fetch();
 		 }else{
 			 echo mysqli_error($mysqli);
@@ -122,8 +122,9 @@
 					  $_SESSION['id_utente'] = $id_utente;
 					  $_SESSION['utente'] = $utente;
 					  $_SESSION['login_string'] = hash('sha512', $password.$user_browser);
-					  $_SESSION['company_id'] = $company_id;
-					  $_SESSION['company_name'] = $codicestudio;
+					  $_SESSION['company_id'] = $codicestudio;
+					  $_SESSION['company_name'] = $nomec;
+					  $_SESSION['company_logo'] = $logoc;
 					  //unlockBrute($id_utente, $mysqli);
 					  // Login eseguito con successo.
 					  return 100;    

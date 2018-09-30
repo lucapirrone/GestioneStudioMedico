@@ -51,12 +51,7 @@ function get_client_ip()
 
 function logout($conn)
 {
-    if($_SESSION['type'] >= 1)
-        log_admin_action($conn, "logout", null);
-    if($_SESSION['type'] >= 1)
-        log_admin_access($conn, "logout");
-    if($_SESSION['type'] == 0)
-        log_user_access($conn, "logout");
+   log_admin_access($conn, "logout");
     
     $_SESSION = array();
     // Recupera i parametri di sessione.
