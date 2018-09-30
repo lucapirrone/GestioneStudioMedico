@@ -8,6 +8,8 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
 
 <form id="form_filtri" class="" action="" method="post">
@@ -47,18 +49,25 @@
 		<input name="array_prestazioni" id="array_prestazioni" type="hidden"/>
 
 		<li class="fill"style="width: 30%;">
-			<fieldset>      
-					<legend>Seleziona i medici</legend>          
-					 <?php
-						foreach($medici as $m){
-							echo ' 
-								<input type="checkbox" id="cb_medico" id_medico="'.$m['id'].'" onclick="onMediciSelection(this);">'.$m['nome'].'<br> 
-							';
-						}
-					?>
-			</fieldset>      
+		<legend>Seleziona i medici</legend>
+		<form action="onMediciSelection(this);">
+			<select id="select_medico" class="js-example-basic-multiple" multiple="multiple">      
+						
+						 <?php
+							foreach($medici as $m){
+								echo ' 
+									<option id_medico="'.$m['id'].'">'.$m['nome'].'<br> 
+								';
+							}
+						?>
+			</select> 
+		</form>
 		</li>
-		
+		<script>
+			$(document).ready(function() {
+    $('#select_medico').select2();
+});
+		</script>
 		
 		<li class="fill"style="width: 30%;">
 			<fieldset>      
@@ -79,6 +88,12 @@
 
 var list_medici = [];
 var list_prestazioni = [];
+
+var array_selection = [];
+$('#select_medico').on('select2:select', function (e) {
+    var data = e.params.data;
+    console.log(data);
+});
 
 function onPrestSelection(input){
 	list_prestazioni.push($(input).attr('id_prestazione'));
