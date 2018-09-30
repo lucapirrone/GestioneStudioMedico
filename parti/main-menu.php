@@ -12,9 +12,8 @@ if(login_check_admin($conn)){
 			<img src="assets/img/user.png" class="img-thumbnail" />
 
 			<div class="inner-text">
-				Jhon Deo Alex
+				<?php echo $_SESSION['utente']; ?>
 			<br />
-				<small>Last Login : 2 Weeks Ago </small>
 			</div>
 		</div>
 
@@ -27,7 +26,7 @@ if(login_check_admin($conn)){
 		else $class_active = "";
 		  echo '
 		  <li '.$class_active.'>
-			<a href="#"><span>'.$item['nome'].'</span></a>
+			<a href="#"><i class="fa fa-fatture"></i><span>'.$item['nome'].'</span><span class="fa arrow"></span></a>
 			<ul class="nav nav-second-level collapse">
 			';
 
