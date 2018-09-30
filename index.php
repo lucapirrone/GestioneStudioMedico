@@ -43,9 +43,7 @@
 		<?php include("parti/modules_includes.php"); ?>
 		
 		<div id="wrapper">
-			
-		<div id="content">
-			
+						
 			<?php 
 						
 				
@@ -65,9 +63,7 @@
 				require("parti/footer.php");
 
 			?>
-				
-		</div>
-			
+						
 		</div>
 
 	</body>
