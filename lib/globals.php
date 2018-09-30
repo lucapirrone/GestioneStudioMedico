@@ -85,11 +85,13 @@
 			array(
 				"nome"=>"Fatturazione",
 				"image"=>"icona-fatturazione.png",
+				"class-icon"=>"fas fa-file-alt",
 				"sub"=>array(
 					array(
 					"nome"=>"Crea Fattura",
 					"code"=>"crea-fattura",
 					"url"=>"parti/admin/fatturazione/nuova-fattura.php",
+					"class-icon"=>"fas fa-plus",
 					"default"=>true,
 					"visibility"=>true
 					),
@@ -97,6 +99,7 @@
 					"nome"=>"Visualizza Fatture",
 					"code"=>"lista-fatture",
 					"url"=>"parti/admin/fatturazione/lista-fatture.php",
+					"class-icon"=>"far fa-eye",
 					"default"=>false,
 					"visibility"=>true
 					)
@@ -105,11 +108,13 @@
 			array(
 				"nome"=>"Anagrafica",
 				"image"=>"icona-anagrafica.png",
+				"class-icon"=>"fas fa-user",
 				"sub"=>array(
 					array(
 					"nome"=>"Visualizza Paziente",
 					"code"=>"visualizza-paziente",
 					"url"=>"parti/admin/anagrafica/paziente/visualizza-paziente.php",
+					"class-icon"=>"far fa-eye",
 					"default"=>true,
 					"visibility"=>true
 					),
@@ -117,6 +122,7 @@
 					"nome"=>"Aggiungi Paziente",
 					"code"=>"aggiungi-paziente",
 					"url"=>"parti/admin/anagrafica/paziente/aggiungi-paziente.php",
+					"class-icon"=>"fas fa-plus",
 					"default"=>true,
 					"visibility"=>false
 					),
@@ -124,6 +130,7 @@
 					"nome"=>"Modifica Paziente",
 					"code"=>"modifica-paziente",
 					"url"=>"parti/admin/anagrafica/paziente/modifica-paziente.php",
+					"class-icon"=>"fas fa-edit",
 					"default"=>true,
 					"visibility"=>false
 					),
@@ -131,6 +138,7 @@
 					"nome"=>"Visualizza Medico",
 					"code"=>"visualizza-medico",
 					"url"=>"parti/admin/anagrafica/medico/visualizza-medico.php",
+					"class-icon"=>"far fa-eye",
 					"default"=>true,
 					"visibility"=>true
 					),
@@ -138,6 +146,7 @@
 					"nome"=>"Aggiungi Medico",
 					"code"=>"aggiungi-medico",
 					"url"=>"parti/admin/anagrafica/medico/aggiungi-medico.php",
+					"class-icon"=>"fas fa-plus",
 					"default"=>true,
 					"visibility"=>false
 					),
@@ -145,6 +154,7 @@
 					"nome"=>"Modifica Medico",
 					"code"=>"modifica-medico",
 					"url"=>"parti/admin/anagrafica/medico/modifica-medico.php",
+					"class-icon"=>"far fa-eye",
 					"default"=>true,
 					"visibility"=>false
 					)
@@ -153,11 +163,13 @@
 			array(
 				"nome"=>"Prestazioni",
 				"image"=>"icona-prestazioni.png",
+				"class-icon"=>"fas fa-vial",
 				"sub"=>array(
 					array(
 					"nome"=>"Visualizza Prestazioni",
 					"code"=>"visualizza-prestazione",
 					"url"=>"parti/admin/prestazioni/visualizza-prestazione.php",
+					"class-icon"=>"fas fa-eye",
 					"default"=>true,
 					"visibility"=>true
 					),
@@ -165,6 +177,7 @@
 					"nome"=>"Aggiungi Prestazione",
 					"code"=>"aggiungi-prestazione",
 					"url"=>"parti/admin/prestazioni/aggiungi-prestazione.php",
+					"class-icon"=>"fas fa-plus",
 					"default"=>false,
 					"visibility"=>true
 					),
@@ -172,6 +185,7 @@
 					"nome"=>"Modifica Prestazione",
 					"code"=>"modifica-prestazione",
 					"url"=>"parti/admin/prestazioni/modifica-prestazione.php",
+					"class-icon"=>"fas fa-edit",
 					"default"=>false,
 					"visibility"=>true
 					)

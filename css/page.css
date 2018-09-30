@@ -45,13 +45,14 @@ fo html {
   margin: 0 auto;
   min-height: 100%;
   height: 100%;
-  overflow: hidden;
   position: absolute;
+  margin-bottom: 100px;
 }
 .content {
-  margin-bottom: 100px;
   display: inline-block;
   width: 100%;
+  height: 100%;
+  padding: 16px;
 }
 .content-right {
   width: 83%;
@@ -71,6 +72,8 @@ fo html {
 .hidden {
   text-align: center !important;
   border: none !important;
+  display: block !important;
+  visibility: visible !important;
 }
 /*//////////////////////////////////////////////////////////////////
 [ header/user_menu ]*/
@@ -467,14 +470,13 @@ form li .view {
   background-color: #DCDCDC;
 }
 .title {
-  text-align: center;
-  font-family: Roboto, sans-serif;
-  padding: 0.5em;
-  background-color: #0094D4;
-  color: #fff;
+  text-align: left;
   width: 100%;
   display: inline-block;
   margin-bottom: 10px;
+  color: #666666;
+  font-weight: 300;
+  font-size: 1.5em;
 }
 /**** Buttons ****/
 input.button_text {
@@ -608,24 +610,22 @@ input[type="password"],
   float: none;
   width: unset !important;
 }
-.form-style-7 input[type="button"],
-input[type="submit"] {
-  background: #0094D4;
-  border: none;
-  padding: 10px 20px 10px 20px;
-  border-bottom: 3px solid #0080B7;
-  border-radius: 3px;
-  color: #fff;
-  font-family: Roboto, 'Helvetica Neue', Helvetica;
+/*.form-style-7 input[type="button"], input[type="submit"]{
+    background: @colorePrimario;
+    border: none;
+    padding: 10px 20px 10px 20px;
+    border-bottom: 3px solid @colorePrimarioDark;
+    border-radius: 3px;
+    color: #fff;
+	font-family: Roboto,'Helvetica Neue',Helvetica;
 }
-.form-style-7 input[type="button"]:hover,
-input[type="submit"]:hover {
-  background: #0080B7;
-  border-bottom: 3px solid #0094D4;
-  color: #fff;
-  font-family: Roboto, 'Helvetica Neue', Helvetica;
-  cursor: pointer;
-}
+.form-style-7 input[type="button"]:hover, input[type="submit"]:hover{
+    background: @colorePrimarioDark;
+	border-bottom: 3px solid @colorePrimario;
+    color:#fff;
+	font-family: Roboto,'Helvetica Neue',Helvetica;
+	cursor: pointer;
+}*/
 .form-control {
   width: 100%;
   height: 46px;

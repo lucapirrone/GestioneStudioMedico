@@ -55,12 +55,14 @@
 				if (file_exists($content)) 
 				{
 					include("parti/header.php");
+					echo "<div class=\"content\">";
 				  	include($content);
+					echo "</div>";
 				} 
 				echo "</div>";
 			
 			
-				require("parti/footer.php");
+				//require("parti/footer.php");
 
 			?>
 						

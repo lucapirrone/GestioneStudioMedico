@@ -4,17 +4,17 @@
 
 ?>
 
-
+<h2 class="title">Seleziona Paziente
+	<i class="delete fas fa-plus" style="float: right" title="Aggiungi Paziente" onClick="window.location.replace('?page=aggiungi-paziente')"></i>
+</h2>
 <form id="form_selezionapaziente" class="form-style-7" action="" method="get">
- 	<h2 class="title testo-grande">Seleziona Paziente
-		<i class="delete fas fa-plus" style="float: right" title="Aggiungi Paziente" onClick="window.location.replace('?page=aggiungi-paziente')"></i>
-	</h2>
+
 	<ul>
 		
 		<?php require 'modules/autocomplete_codicefiscale.php' ?>
 		
 		 <li class="buttons">
-            <input id="select_paz" class="button_text" type="button" value="Seleziona Paziente" />
+            <input id="select_paz" class="btn btn-light" type="button" value="Seleziona Paziente" />
          </li>
 		
     </ul>

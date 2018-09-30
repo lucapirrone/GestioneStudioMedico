@@ -12,13 +12,11 @@
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
+		
+<h2 class="title testo-grande">Informazioni Paziente Selezionato<i class="delete fas fa-edit" style="float: right" title="Modifica" id="modifica_anagrafica"></i></h2></h2>
 
 <form id="info_paziente" class="form-style-7" action="" method="post">
-	<ul>
-		
-		<h2 class="title testo-grande">Informazioni Paziente Selezionato<i class="delete fas fa-edit" style="float: right" title="Modifica" id="modifica_anagrafica"></i></h2></h2>
-
-		
+	<ul>		
 		<script>
 		$('#modifica_anagrafica').on("click", function(){
 
@@ -50,11 +48,11 @@
 	
 		<li class="fill" style="width: 90%;">
 		   <label class="description" for="element_1">Paziente</label>
-		   <input type="text" class="form-control" value="<?php echo $paziente->nome." ".$paziente->cognome; ?>" readonly/>      
+		   <input type="text" value="<?php echo $paziente->nome." ".$paziente->cognome; ?>" readonly/>      
 		</li>
 		<li class="fill" style="width: 10%;">
 		   <label class="description" for="element_1">ID Paziente</label>
-		   <input name="id_paziente" type="text" class="form-control" value="<?php echo $paziente->id; ?>" readonly/>      
+		   <input name="id_paziente" type="text" value="<?php echo $paziente->id; ?>" readonly/>      
 		</li>
 		
 		<li class="fill">
