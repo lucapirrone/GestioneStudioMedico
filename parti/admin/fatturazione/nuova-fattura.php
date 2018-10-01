@@ -221,7 +221,7 @@
 
 		
 		 <li class="buttons">
-            <input id="salva_prestazione" class="button_text" type="submit" name="submit" value="Salva Prestazione" />
+            <input id="salva_prestazione" class="btn btn-light" type="submit" name="submit" value="Salva Prestazione" />
          </li>
 	</ul>
 		

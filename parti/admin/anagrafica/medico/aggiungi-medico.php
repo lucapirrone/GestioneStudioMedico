@@ -98,7 +98,7 @@
 		  </li>
 		  
 		  <li class="buttons">
-			<input id="bn_modifica" class="button_text" type="submit" name="submit" value="Aggiungi Medico" style="display: none"/>
+			<input id="bn_modifica" class="btn btn-light" type="submit" name="submit" value="Aggiungi Medico" style="display: none"/>
 		 </li>
       </ul>
    </form>

@@ -14,7 +14,7 @@
 		<?php require 'modules/autocomplete_medico.php' ?>
 		
 		 <li class="buttons">
-            <input id="select_medico" class="button_text" type="button" value="Seleziona Medico" />
+            <input id="select_medico" class="btn btn-light" type="button" value="Seleziona Medico" />
          </li>
 		
     </ul>
