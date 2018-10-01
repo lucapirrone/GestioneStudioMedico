@@ -34,6 +34,7 @@ class PrestEff{
 				
 				return true;
 			}else{
+				echo("Errore: ".mysqli_error($this->conn));
 				return false;
 			}
 			

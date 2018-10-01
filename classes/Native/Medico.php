@@ -39,6 +39,7 @@ class Medico{
 				
 				return true;
 			}else{
+				echo("Errore: ".mysqli_error($this->conn));
 				return false;
 			}
 			
@@ -54,7 +55,7 @@ class Medico{
 		$this->fatture = $sp->cercaMedicoInizioFine($this->id, $datainizio, $datafine);
 	}
 	
-	public function modificaMedico($id, $tipo, $nome, $cognome, $titolo, $spec, $indirizzo, $citta, $cap, $prov, $cod_fiscale, $p_iva, $fattura){
+	public function modificaMedico($tipo, $nome, $cognome, $titolo, $spec, $indirizzo, $citta, $cap, $prov, $cod_fiscale, $p_iva, $fattura){
 	if($stmt = $this->conn->prepare("UPDATE MEDICI SET TIPO=?, NOME=?, COGNOME=?, TITOLO=?, SPEC =?, INDIRIZZO=?, CITTA=?, CAP=?, PROV=?, COD_FISCALE=?, P_IVA=?, FATTURA=? WHERE ID = ? AND KCO = ?")){
 		$stmt->bind_param("sssssssssssiii", $tipo, $nome, $cognome, $titolo, $spec, $indirizzo, $citta, $cap, $prov, $cod_fiscale, $p_iva, $fattura, $this->id, $_SESSION['company_id']);
 		if(!$stmt->execute()){
@@ -72,7 +73,7 @@ class Medico{
 				}
 		}
 	}
-	public function aggiungiMedico($id, $tipo, $nome, $cognome, $titolo, $spec, $indirizzo, $citta, $cap, $prov, $cod_fiscale, $p_iva, $fattura){
+	public function aggiungiMedico($tipo, $nome, $cognome, $titolo, $spec, $indirizzo, $citta, $cap, $prov, $cod_fiscale, $p_iva, $fattura){
 		if($stmt = $this->conn->prepare("INSERT INTO MEDICI SET TIPO=?, NOME=?, COGNOME=?, TITOLO=?, SPEC =?, INDIRIZZO=?, CITTA=?, CAP=?, PROV=?, COD_FISCALE=?, P_IVA=?, FATTURA=?, KCO=?"))
 			$stmt->bind_param("sssssssssssii",$tipo, $nome, $cognome, $titolo, $spec, $indirizzo, $citta, $cap, $prov, $cod_fiscale, $p_iva, $fattura, $_SESSION['company_id']);
 			if(!$stmt->execute()){
