@@ -26,27 +26,32 @@
 		<!-- RIGA 1 -->
 		  
 		<li class="fill" style="width: 5%;">
-		   <label class="description" for="element_1">Sesso</label>
-		   <input name="id" type="text" class="form-control" value="<?php echo $paziente->sesso; ?>" readonly/>    
-		</li>
-		  
-		<li class="fill" style="width: 40%;">
-		   <label class="description" for="element_1">Cognome</label>
-		   <input name="cognome" type="text" class="form-control" value="<?php echo $paziente->cognome; ?>" readonly/>      
+		   <label class="description" for="element_1">ID</label>
+		   <input name="id" type="text" value="<?php echo $paziente->id; ?>" readonly/>      
 		</li>	
-		<li class="fill" style="width: 40%; padding-right: 10px; padding-left: 10px; ">
-		   <label class="description" for="element_1">Nome</label>
-		   <input name="nome" type="text" class="form-control" value="<?php echo $paziente->nome; ?>" readonly/>   
-		</li>
 		<li class="fill" style="width: 10%; padding-right: 10px; padding-left: 10px;">
 		   <label class="description" for="element_1">Titolo</label>
-		   <input name="nome" type="text" class="form-control" value="<?php echo $paziente->titolo; ?>" readonly/>      
+		   <input name="nome" type="text" value="<?php echo $paziente->titolo; ?>" readonly/>      
 		</li>
+		<li class="fill" style="width: 30%;">
+		   <label class="description" for="element_1">Cognome</label>
+		   <input name="cognome" type="text" value="<?php echo $paziente->cognome; ?>" readonly/>      
+		</li>	
+		<li class="fill" style="width: 30%; padding-right: 10px; padding-left: 10px; ">
+		   <label class="description" for="element_1">Nome</label>
+		   <input name="nome" type="text" value="<?php echo $paziente->nome; ?>" readonly/>   
+		</li>
+		 		 
 		<li class="fill" style="width: 5%;">
-		   <label class="description" for="element_1">ID</label>
-		   <input name="id" type="text" class="form-control" value="<?php echo $paziente->id; ?>" readonly/>      
-		</li>	 
-		 		  
+		   <label class="description" for="element_1">Sesso</label>
+		   <input name="id" type="text" value="<?php echo $paziente->sesso; ?>" readonly/>    
+		</li>
+		  	  
+		  <li class="fill" style="width: 20%;">
+		   <label class="description" for="element_1">Data di nascita</label>
+			<input type="date"  name="data" value="<?php echo  date('m/d/Y',$paziente->data); ?>" step="1" required/>
+			
+		</li>	  
 		  
 		  <!-- RIGA 3 -->
 		  
@@ -99,15 +104,25 @@
 	
 		    <!-- RIGA 6 -->
 	
-		<li class="left">
+		<li class="fill" style="width: 33%;">
 		   <label class="description" for="element_1">1° Telefono</label>
-		   <input name="tel_1" type="text" value="<?php echo $paziente->tel_1; ?>" readonly/> 
+		   <input name="tel_1" type="text" value="<?php echo $paziente->tel_1; ?>"/> 
 		</li>
 	
 	
-		<li class="right">
+		<li class="fill" style="width: 33%;">
+		   <label class="description">Email</label>
+			<input name="email" type="text" value="<?php echo $paziente->email; ?>"/>			
+	   </li>
+		  
+		<li class="fill" style="width: 33%;">
 		   <label class="description">2° Telefono</label>
-			<input name="tel_2" type="text" value="<?php echo $paziente->tel_2; ?>" readonly/>			
+			<input name="tel_2" type="text" value="<?php echo $paziente->tel_2; ?>"/>			
+	   </li>		
+		  
+		<li class="fill">
+		   <label class="description">Note</label>
+			<input name="note" type="text" value="<?php echo $paziente->tel_2; ?>"/>			
 	   </li>
 		  
 		  <li class="buttons">

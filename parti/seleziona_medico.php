@@ -4,11 +4,11 @@
 
 ?>
 
-
+<h2 class="title testo-grande">Seleziona Medico
+	<i class="delete fas fa-plus" style="float: right" title="Aggiungi Medico" onClick="window.location.replace('?page=aggiungi-medico')"></i>
+</h2>
 <form id="form_selezionapaziente" class="form-style-7" action="" method="get">
- 	<h2 class="title testo-grande">Seleziona Medico
-		<i class="delete fas fa-plus" style="float: right" title="Aggiungi Medico" onClick="window.location.replace('?page=aggiungi-medico')"></i>
-	</h2>
+
 	<ul>
 		
 		<?php require 'modules/autocomplete_medico.php' ?>

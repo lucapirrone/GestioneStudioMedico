@@ -20,16 +20,18 @@
                 $toggle = this.settings.toggle;
 
             $this.find('li.active').has('ul').children('ul').addClass('collapse in');
-            $this.find('li').not('.active').has('ul').children('ul').addClass('collapse');
-
+            $this.find('li').not('.active').has('ul').addClass('collapse');
+			
+			
             $this.find('li').has('ul').children('a').on('click', function (e) {
                 e.preventDefault();
+				console.log("click");
 
                 $(this).parent('li').toggleClass('active').children('ul').collapse('toggle');
-
-                if ($toggle) {
-                    $(this).parent('li').siblings().removeClass('active').children('ul.in').collapse('hide');
-                }
+                //$(this).parent('li').children('ul').removeClass('in');
+				
+				//$(this).parent('li').siblings().removeClass('active').children('ul.in').collapse('hide');
+                
             });
         }
     };

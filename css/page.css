@@ -12,12 +12,6 @@ body,
 html {
   font-family: 'RobotoDraft', 'Roboto', 'Helvetica Neue, Helvetica, Arial', sans-serif;
   background-color: #F3F3F3 !important;
-  height: unset !important;
-  margin: 0;
-}
-fo html {
-  font-size: 100%;
-  height: 100% !important;
 }
 .icona-dark {
   background-color: #0094D4;
@@ -43,28 +37,32 @@ fo html {
 #wrapper {
   width: 100%;
   margin: 0 auto;
-  min-height: 100%;
-  height: 100%;
   position: absolute;
-  margin-bottom: 100px;
+  background-color: #F3F3F3;
+  display: block;
+  height: 100%;
+  overflow: auto;
 }
 .content {
   display: inline-block;
   width: 100%;
-  height: 100%;
   padding: 16px;
 }
 .content-right {
-  width: 83%;
-  display: inline-block;
+  width: 80%;
+  float: right;
+  display: block;
   border-left: 1px solid #e6e6e6;
 }
 .menu-left {
-  width: 17%;
-  height: 100%;
-  display: inline-block;
+  width: 20%;
+  display: block;
   float: left;
   background-color: #202020;
+  height: 100%;
+  overflow: auto;
+  position: fixed;
+  z-index: 9999;
 }
 .g-recaptcha {
   display: inline-block;
@@ -270,6 +268,9 @@ fo html {
   color: #666666;
   float: right;
 }
+.active-menu {
+  background-color: #00CA79!important;
+}
 /*
 #navigation {
     background: white;
@@ -441,7 +442,7 @@ form li:after {
 .select2-selection {
   width: 100%;
 }
-form {
+.section {
   margin: 0px auto;
   background: #fff;
   border-radius: 2px;
@@ -449,6 +450,7 @@ form {
   text-align: center;
   display: inline-block;
   width: 100%;
+  border: 1px solid #e6e6e6;
 }
 form li span {
   color: #444;
@@ -470,7 +472,7 @@ form li.right {
 }
 form li.fill {
   display: inline;
-  float: right;
+  float: left;
   width: 100%;
   text-align: left;
 }

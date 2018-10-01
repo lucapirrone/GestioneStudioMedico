@@ -3,21 +3,16 @@
     $array_info = [
         "nome",
 		"cognome",
-		"sesso",
-		"data",
+		"tipo",
 		"titolo",
+		"spec",
 		"indirizzo",
 		"citta",
 		"cap",
-		"provincia",
-		"stato",
-		"tel_1",
-		"tel_2",
-		"cod_fisc",
+		"prov",
+		"cod_fiscale",
 		"p_iva",
-		"note",
-		"privacy",
-		"email"
+		"fattura"
     ];
 
 	function _error($code, $addmsg){
@@ -52,17 +47,21 @@
             _error(400, null); 
             return $valido;       
         }		
+		
+		if(!checkToken()){
+			$valido = false; 
+			return $valido;
+		}
 
         return $valido;
 
     }
 
     if(checkValidate($array_info, $conn)) { 
-
-				
+		
 		//Dichiarazione variabili prese da parametri post e trasformati in MAIUSCOLO
         foreach($array_info as $item){
-			${$item} = $item;
+			${$item} = $_POST[$item];
 		}
 		
 		$m = new Medico($conn);
@@ -70,14 +69,16 @@
 		if(isset($_POST['id'])){
 			$id = $_POST['id'];
 			$m->selectMedicoById($id);
-			$m->modificaMedico($nome, $cognome, $sesso, $data, $titolo, $indirizzo, $citta, $cap, $provincia, $stato, $tel_1, $tel_2, $cod_fisc, $p_iva, $note, $provacy, $email);
+			$m->modificaMedico($tipo, $nome, $cognome, $titolo, $spec, $indirizzo, $citta, $cap, $prov, $cod_fiscale, $p_iva, $fattura);
+			echo "<script>alert('Salvataggio Anagrafica Medico Completato');</script>";
+
 		}else{
-			$m->aggiungiMedico($nome, $cognome, $sesso, $data, $titolo, $indirizzo, $citta, $cap, $provincia, $stato, $tel_1, $tel_2, $cod_fisc, $p_iva, $note, $provacy, $email);
+			$m->aggiungiMedico($tipo, $nome, $cognome, $titolo, $spec, $indirizzo, $citta, $cap, $prov, $cod_fiscale, $p_iva, $fattura);
+			
+			echo "<script>alert('Salvataggio Nuovo Medico Completato');</script>";
+
 		}
-		
-		
-		success($info);
-		
+			
 		
     }
 

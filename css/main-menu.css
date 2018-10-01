@@ -12,6 +12,9 @@
 .exit {
   font-size: 0.8em;
 }
+.exit:hover {
+  text-decoration: underline;
+}
 .navbar-cls-top .navbar-brand {
   color: #fff;
   background: #202020;

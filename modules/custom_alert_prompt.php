@@ -140,41 +140,4 @@ $("#btn-ok").on("click", function(){
   z-index: 1;
 }
 
-button {
-  border: none;
-  background-color: transparent;
-  font-weight: bold;
-  color: #2971d4;
-  font-size: 14px;
-  padding: 15px;
-  cursor: pointer;
-  float: right;
-  outline: none;
-}
-button:hover {
-  background-color: #e5e5e5;
-}
-
-button#btn-ok, button#btn-cancel {
-  border: none;
-  background-color: transparent;
-  font-weight: bold;
-  color: #2971d4;
-  font-size: 14px;
-  padding: 15px;
-  cursor: pointer;
-  outline: none;
-  float: right;
-}
-button#btn-ok:hover, button#btn-cancel:hover {
-  background-color: #e5e5e5;
-}
-
-button#btn-cancel {
-  color: #e5e5e5;
-}
-button#btn-cancel:hover {
-  background-color: transparent;
-}
-
 </style>

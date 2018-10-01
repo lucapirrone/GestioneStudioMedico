@@ -10,12 +10,12 @@
 	$paziente = new Paziente($conn);
 	$paziente->selectPazienteById($_GET['id_paziente']);
 ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
 
 		
-<h2 class="title testo-grande">Informazioni Paziente Selezionato<i class="delete fas fa-edit" style="float: right" title="Modifica" id="modifica_anagrafica"></i></h2></h2>
+<h2 class="title">Informazioni Paziente Selezionato<i class="delete fas fa-edit" style="float: right" title="Modifica" id="modifica_anagrafica"></i></h2>
 
-<form id="info_paziente" class="form-style-7" action="" method="post">
+<form id="info_paziente" class="form-style-7 section" action="" method="post">
 	<ul>		
 		<script>
 		$('#modifica_anagrafica').on("click", function(){

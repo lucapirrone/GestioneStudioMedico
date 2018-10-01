@@ -10,7 +10,8 @@ class Table{
 
 	public function designKeys(){
 		echo '
-		<table id="table" class="table table-striped table-mc-deep-purple">
+		<div class="table-responsive">
+		<table id="table" class="table table-striped table-bordered table-hover">
 		  <thead>
 			<tr>';
 
@@ -40,7 +41,8 @@ class Table{
 		echo'
 				</tr>
 			</tbody>
-		</table>';
+		</table>
+		</div>';
 	}
 	
 }

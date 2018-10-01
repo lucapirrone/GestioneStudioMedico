@@ -37,17 +37,22 @@ window.onclick = function(event) {
 		   <?php
 		   
 		foreach($pagine as $main){
-			foreach($main['sub'] as $voce){
-				if(!(isset($_GET['page'])) && $voce['default']){
-					if (file_exists($voce['url'])){
-						echo " > <a href='?page=".$voce['code']."'>".$voce['nome']."</a>";
+			if($main['sub']!=null){
+				foreach($main['sub'] as $voce){
+					if(!(isset($_GET['page'])) && $voce['default']){
+						if (file_exists($voce['url'])){
+							echo " > <a href='?page=".$voce['code']."'>".$voce['nome']."</a>";
+						}
+					}
+					if(isset($_GET['page']) && $voce['code']==$_GET['page']){
+						if (file_exists($voce['url'])){
+							echo " > <a href='?page=".$voce['code']."'>".$voce['nome']."</a>";
+						}
 					}
 				}
-				if(isset($_GET['page']) && $voce['code']==$_GET['page']){
-					if (file_exists($voce['url'])){
-						echo " > <a href='?page=".$voce['code']."'>".$voce['nome']."</a>";
-					}
-				}
+			}else{
+				if((isset($_GET['page']) && $_GET['page']==$main['code']) || $voce['default'])
+					echo " > <a href='?page=".$main['code']."'>".$main['nome']."</a>";
 			}
 		}
 		   ?>
