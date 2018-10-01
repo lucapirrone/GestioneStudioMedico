@@ -11,11 +11,11 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
+<h2 class="title testo-grande">Visualizza Fatture</h2>
 
-<form id="form_filtri" class="" action="" method="post">
+<form id="form_filtri" action="" method="post">
 	<ul>
 		
-		<h2 class="title testo-grande">Visualizza Fatture</h2>
 
 	
 		<?php 
@@ -31,16 +31,16 @@
 		?>
 		
 		<li class="fill buttons" style="width: 10%;">
-            <input id="id_filtra_fatture" class="button_text" type="button" value="Salva Prestazione" onclick="submitForm(this);"/>
+            <input id="id_filtra_fatture" class="btn btn-light" type="button" value="Cerca" onclick="submitForm();"/>
         </li>
 		
 		<li class="fill" style="width: 15%;">
-			<label class="description" for="element_1">Data Fine</label>
+			<legend>Data Fine</legend>
 			<input type="date" class="form-control" id="input_data" name="data_fine" value="<?php echo date('Y-m-d'); ?>" step="1" required/>
 			
 		</li>
 		<li class="fill" style="width: 15%;">
-			<label class="description" for="element_1">Data Inizio</label>
+			<legend>Data Inizio</legend>
 			<input type="date" class="form-control" id="input_data" name="data_inizio" value="<?php echo date('Y-m-d'); ?>" step="1" required/>
 			
 		</li>		
@@ -49,90 +49,149 @@
 		<input name="array_prestazioni" id="array_prestazioni" type="hidden"/>
 
 		<li class="fill"style="width: 30%;">
-		<legend>Seleziona i medici</legend>
-		<form action="onMediciSelection(this);">
-			<select id="select_medico" class="js-example-basic-multiple" multiple="multiple">      
-						
-						 <?php
-							foreach($medici as $m){
-								echo ' 
-									<option id_medico="'.$m['id'].'">'.$m['nome'].'<br> 
-								';
-							}
-						?>
+			<legend>Seleziona i medici</legend>
+			<select id="select_medico" multiple style="width: 100%;">      
+  				
 			</select> 
-		</form>
 		</li>
-		<script>
-			$(document).ready(function() {
-    $('#select_medico').select2();
-});
-		</script>
-		
 		<li class="fill"style="width: 30%;">
-			<fieldset>      
-					<legend>Seleziona le prestazioni</legend>          
-					 <?php
-						foreach($prestazioni as $p){
-							echo ' 
-								<input type="checkbox" id="cb_prestazioni" id_prestazione="'.$p['id'].'" onclick="onPrestSelection(this);">'.$p['nome'].'<br> 
-							';
-						}
-					?>
-			</fieldset>      
+			<legend>Seleziona le prestazioni</legend>          
+			<select id="select_prestazione" multiple style="width: 100%;">      
+
+			</select>    
 		</li>
 
 	</ul>
 
 <script>
 
-var list_medici = [];
-var list_prestazioni = [];
+	var list_medici = [];
+	var list_prestazioni = [];
 
-var array_selection = [];
-$('#select_medico').on('select2:select', function (e) {
-    var data = e.params.data;
-    console.log(data);
-});
+	<?php
 
-function onPrestSelection(input){
-	list_prestazioni.push($(input).attr('id_prestazione'));
-}
 
-function onMediciSelection(input){
-	list_medici.push($(input).attr('id_medico'));
-}
 
-function submitForm(b){
-	console.log(list_medici);
-	console.log(list_prestazioni);
-	$('#array_medici').val(list_medici);
-	$('#array_prestazioni').val(list_prestazioni);
+	$build_medici = array();
+	foreach($medici as $m){
+		$build_medici[] = array(
+			"id"=>$m['id'],
+			"text"=>$m['nome']
+		);  
+	}
+	
+	
+	$arr_medici[] = array(
+		"text"=>"Medici",
+		"children"=>$build_medici
+	);
 
-	$('#form_filtri').submit();
-}
+	$build_prestazioni = array();
+	foreach($prestazioni as $p){
+		$build_prestazioni[] = array(
+			"id"=>$p['id'],
+			"text"=>$p['nome']
+		);  
+	}
+	
+	
+	$arr_prestazioni[] = array(
+		"text"=>"Prestazioni",
+		"children"=>$build_prestazioni
+	);
 
+	echo "var arr_medici=".json_encode($arr_medici).";";
+	echo "var arr_prestazioni=".json_encode($arr_prestazioni).";";
+
+
+	?>
+
+		
+	function formatResult(item) {
+		if(!item.id) {
+		   return item.text;
+		}
+		// return item template
+		return '<i style="color:#ff0000">' + item.text + '</i>';
+	}
+
+	function formatSelection(item) {
+		// return selection template
+		return '<b>' + item.text + '</b>';
+	}
+	$('#select_medico').select2({
+		data: arr_medici,			
+		// Specify format function for dropdown item
+		formatResult: formatResult,
+		// Specify format function for selected item
+		formatSelection: formatSelection,
+	});
+		
+	$('#select_medico').change(function() {
+		//var theID = $(test).val(); // works
+		//var theSelection = $(test).filter(':selected').text(); // doesn't work
+		var items = $('#select_medico').select2('data');
+		list_medici=[];
+		items.forEach(function(item){
+			list_medici.push(item.id);
+		});
+	});
+	
+	$('#select_prestazione').select2({
+		data: arr_prestazioni,			
+		// Specify format function for dropdown item
+		formatResult: formatResult,
+		// Specify format function for selected item
+		formatSelection: formatSelection,
+	});
+		
+	$('#select_prestazione').change(function() {
+		//var theID = $(test).val(); // works
+		//var theSelection = $(test).filter(':selected').text(); // doesn't work
+		var items = $('#select_prestazione').select2('data');
+		arr_prestazioni=[];
+		items.forEach(function(item){
+			arr_prestazioni.push(item.id);
+		});
+	});
+
+	
+
+	function submitForm(){
+		console.log(list_medici);
+		console.log(list_prestazioni);
+		$('#array_medici').val(list_medici);
+		$('#array_prestazioni').val(list_prestazioni);
+
+		$('#form_filtri').submit();
+
+	}
+	
 </script>
 	
 <?php
+ 
+	$array_medici = "";
+	$array_prestazioni = "";
+	$data_inizio = "";
+	$data_fine = "";
 
-$array_medici = "";
-$array_prestazioni = "";
-$data_inizio = "";
-$data_fine = "";
+	if(isset($_POST['array_medici'],$_POST['array_prestazioni'],$_POST['data_inizio'],$_POST['data_fine'])){
 
-if(isset($_POST['array_medici']))
-	$array_medici = $_POST['array_medici'];
-if(isset($_POST['array_prestazioni']))
-	$array_prestazioni = $_POST['array_prestazioni'];
-if(isset($_POST['data_inizio']))
-	$data_inizio = $_POST['data_inizio'];
-if(isset($_POST['data_fine']))
-	$data_fine = $_POST['data_fine'];
+		if(isset($_POST['array_medici']))
+			$array_medici = $_POST['array_medici'];
+		if(isset($_POST['array_prestazioni']))
+			$array_prestazioni = $_POST['array_prestazioni'];
+		if(isset($_POST['data_inizio']))
+			$data_inizio = $_POST['data_inizio'];
+		if(isset($_POST['data_fine']))
+			$data_fine = $_POST['data_fine'];
 
-$sf = new SearchFatture($conn);
-$sf->filtraFatture($array_medici, $array_prestazioni, $data_inizio, $data_fine);
-$sf->buildTable();
+		$sf = new SearchFatture($conn);
+		$sf->filtraFatture($array_medici, $array_prestazioni, $data_inizio, $data_fine);
+		$sf->buildTable();
 
-		?>
+	}
+	
+?>
 
