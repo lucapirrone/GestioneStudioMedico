@@ -46,6 +46,11 @@
             return $valido;       
         }		
 
+		if(!checkToken()){
+			$valido = false; 
+			return $valido;
+		}
+		
         return $valido;
 
     }

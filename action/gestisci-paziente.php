@@ -53,6 +53,11 @@
             return $valido;       
         }		
 
+		if(!checkToken()){
+			$valido = false; 
+			return $valido;
+		}
+		
         return $valido;
 
     }
@@ -70,14 +75,13 @@
 		if(isset($_POST['id'])){
 			$id = $_POST['id'];
 			$p->selectPazienteById($id);
-			$p->modificaPaziente($nome, $cognome, $sesso, $data, $titolo, $indirizzo, $citta, $cap, $provincia, $stato, $tel_1, $tel_2, $cod_fisc, $p_iva, $note, $provacy, $email);
+			$p->modificaPaziente($nome, $cognome, $sesso, strtotime($data), $titolo, $indirizzo, $citta, $cap, $provincia, $stato, $tel_1, $tel_2, $cod_fisc, $p_iva, $note, $privacy, $email);
+			
+			echo "<script>alert('Salvataggio Anagrafica Paziente Completato');</script>";
 		}else{
-			$p->aggiungiPaziente($nome, $cognome, $sesso, $data, $titolo, $indirizzo, $citta, $cap, $provincia, $stato, $tel_1, $tel_2, $cod_fisc, $p_iva, $note, $provacy, $email);
+			$p->aggiungiPaziente($nome, $cognome, $sesso, strtotime($data), $titolo, $indirizzo, $citta, $cap, $provincia, $stato, $tel_1, $tel_2, $cod_fisc, $p_iva, $note, $privacy, $email);
+			echo "<script>alert('Salvataggio Nuovo Paziente Completato');</script>";
 		}
-		
-		
-		success($info);
-		
 		
     }
 

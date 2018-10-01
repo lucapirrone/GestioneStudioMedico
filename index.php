@@ -12,18 +12,25 @@
 	
 	$content = 'parti/404.php';
 	foreach($pagine as $main){
-		foreach($main['sub'] as $voce){
-			if(!(isset($_GET['page'])) && $voce['default']){
-				if (file_exists($voce['url'])){
-					$content = $voce['url'];
-					$title = $voce['nome'];
+		if($main['sub']!=null){
+			foreach($main['sub'] as $voce){
+				if(!(isset($_GET['page'])) && $voce['default']){
+					if (file_exists($voce['url'])){
+						$content = $voce['url'];
+						$title = $voce['nome'];
+					}
+				}
+				if(isset($_GET['page']) && $voce['code']==$_GET['page']){
+					if (file_exists($voce['url'])){
+						$content = $voce['url'];
+						$title = $voce['nome'];
+					}
 				}
 			}
-			if(isset($_GET['page']) && $voce['code']==$_GET['page']){
-				if (file_exists($voce['url'])){
-					$content = $voce['url'];
-					$title = $voce['nome'];
-				}
+		}else{
+			if (file_exists($main['url'])){
+				$content = $main['url'];
+				$title = $main['nome'];
 			}
 		}
 	}

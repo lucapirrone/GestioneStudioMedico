@@ -83,6 +83,14 @@
 	if(login_check_admin($conn)){	//amministratore
 	    $pagine = array(
 			array(
+				"nome"=>"Dashboard",
+				"code"=>"dashboard",
+				"url"=>"parti/admin/dashboard/dashboard.php",
+				"image"=>"icona-fatturazione.png",
+				"class-icon"=>"fa fa-dashboard",
+				"sub"=>null
+			),
+			array(
 				"nome"=>"Fatturazione",
 				"image"=>"icona-fatturazione.png",
 				"class-icon"=>"fas fa-file-alt",
@@ -187,10 +195,33 @@
 					"url"=>"parti/admin/prestazioni/modifica-prestazione.php",
 					"class-icon"=>"fas fa-edit",
 					"default"=>false,
-					"visibility"=>true
+					"visibility"=>false
 					)
 				)
 			),
+			array(
+				"nome"=>"Prima Nota",
+				"image"=>"icona-primanota.png",
+				"class-icon"=>"fas fa-pencil-alt",
+				"sub"=>array(
+					array(
+					"nome"=>"Registra Movimento",
+					"code"=>"primanota-registra-movimento",
+					"url"=>"parti/admin/primanota/registra-movimento.php",
+					"class-icon"=>"fas fa-exchange-alt",
+					"default"=>false,
+					"visibility"=>true
+					),
+					array(
+					"nome"=>"Stampa",
+					"code"=>"primanota-stampa",
+					"url"=>"parti/admin/primanota/stampa.php",
+					"class-icon"=>"fas fa-print",
+					"default"=>false,
+					"visibility"=>true
+					)
+				)
+			)
 		);
 		
 		array_push($usercontrol_menu, 

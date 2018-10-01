@@ -6,6 +6,8 @@
 
 ?>
 
+		
+<h2 class="title">Aggiungi Prestazione<i class="delete fas fa-edit" style="float: right" title="Modifica" id="modifica_anagrafica"></i></h2>
 <div id="form_container">
    <form id="form_aggiungipaziente" class="form-style-7" action="" method="post">
 	 				  
