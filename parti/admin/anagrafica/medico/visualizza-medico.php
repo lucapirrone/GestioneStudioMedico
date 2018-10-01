@@ -94,7 +94,7 @@
 	   </li>
 		  
 		  <li class="buttons">
-			<input id="bn_modifica" class="button_text" type="submit" name="submit" value="Salva Anagrafica" style="display: none"/>
+			<input id="bn_modifica" class="btn btn-light" type="submit" name="submit" value="Salva Anagrafica" style="display: none"/>
 		 </li>
       </ul>
    </form>
