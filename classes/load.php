@@ -12,6 +12,7 @@ require "Collection/SearchFatture.php";
 require "Collection/SearchMedico.php";
 require "Collection/SearchPaziente.php";
 require "Collection/SearchPrestazioni.php";
+require "Collection/SearchPrimaNota.php";
 //Gui
 require "gui/Tabella.php";
 

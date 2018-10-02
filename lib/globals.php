@@ -215,7 +215,7 @@
 					array(
 					"nome"=>"Stampa",
 					"code"=>"primanota-stampa",
-					"url"=>"parti/admin/primanota/stampa.php",
+					"url"=>"parti/admin/primanota/primanota-stampa.php",
 					"class-icon"=>"fas fa-print",
 					"default"=>false,
 					"visibility"=>true

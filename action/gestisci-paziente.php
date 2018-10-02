@@ -67,7 +67,7 @@
 				
 		//Dichiarazione variabili prese da parametri post e trasformati in MAIUSCOLO
         foreach($array_info as $item){
-			${$item} = $item;
+			${$item} = $_POST[$item];
 		}
 		
 		$p = new Paziente($conn);

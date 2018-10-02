@@ -1,16 +1,12 @@
 <?php
 
     $array_info = [
-        "id_paziente",
-        "id_prestazione",
-        "id_medico_1",
-        "id_medico_2",
-        "id_medico_3",
-        "id_medico_4",
-        "id_medico_5",
-        "importo",
-        "flag_iva",
-        "flag_ritenuta"
+        "intestatario",
+		"descrizione",
+		"data_mov",
+		"tipo_pagamento",
+		"verso",
+		"importo"
     ];
 
 	function _error($code, $addmsg){
@@ -60,32 +56,30 @@
 				
 		//Dichiarazione variabili prese da parametri post e trasformati in MAIUSCOLO
         foreach($array_info as $item){
-			if($_POST[$item]!==""){
-				${$item} = $_POST[$item];
-			}else
-				${$item} = null;
+			${$item} = $_POST[$item];
 		}
 		
-		$paz = new Paziente($conn);
-		$paz->selectPazienteById($id_paziente);
+		$data_mov = strtotime($data_mov);
+		$data_reg = time();
+		$avere = $dare = "";
 		
-		$prest = new Prestazione($conn);
-		$prest->selectPrestazioneById($id_prestazione);
+		if($verso=="ENTRATA") $avere = $importo;
+		if($verso=="USCITA") $dare = $importo;
 		
-		$pe = new PrestEff($conn);
-		
-		if($id_prest_eff = $pe->aggiungiPrestEff($id_paziente, $id_prestazione, $id_medico_1, $id_medico_2, $id_medico_3, $id_medico_4, $id_medico_5, time(), $importo))
-			echo '<script>alert("Prestazione Salvata Correttamente!")</script>';
-		else
-			echo '<script>alert("Si è verificato un errore!")</script>';
-		
-		$f = new Fattura($conn);
-		$f->aggiungiFattura("000000",time(),$importo,$flag_iva,$id_prest_eff,$flag_ritenuta);
-		
+		$cassa = $avere-$dare;
 		
 		$pn = new Movimento($conn);
-		$pn->aggiungiMovimento(time(), time(), $paz->cognome." ".$paz->nome, $prest->nome, "CONTANTI", 0, $importo, $importo);
 		
+		if(isset($_POST['id'])){
+			$id = $_POST['id'];
+			$pn->selectPazienteById($id);
+			$pn->modificaMovimento($id, $data_reg, $data_mov, $intestatario, $descrizione, $tipo_pagamento, $dare, $avere, $cassa);
+			
+			echo "<script>alert('Salvataggio Movimento Completato');</script>";
+		}else{
+			$pn->aggiungiMovimento($data_reg, $data_mov, $intestatario, $descrizione, $tipo_pagamento, $dare, $avere, $cassa);
+			echo "<script>alert('Salvataggio Nuovo Movimento Completato');</script>";
+		}
 		
     }
 

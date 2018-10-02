@@ -1,6 +1,6 @@
 <?php
 
-class PrimaNota{
+class Movimento{
 	
 	private $conn;
 	//Attributi
@@ -20,7 +20,7 @@ class PrimaNota{
         $this->conn = $conn;
     }
 	
-	public function selectPrestazioneById($id){
+	public function selectMovimentoById($id){
 		if($stmt = $this->conn->prepare("SELECT ID, DATA_REG, DATA_MOV, INTESTATARIO, DESCRIZIONE, TIPO_PAGAMENTO, DARE, AVERE, CASSA FROM PRIMA_NOTA WHERE ID = ? AND KCO = ?")) {
             $stmt->bind_param('ii', $id, $_SESSION['company_id']); // esegue il bind del parametro '$user_id'.
             $stmt->execute(); // Esegue la query creata.
@@ -43,7 +43,7 @@ class PrimaNota{
 		}
 	}
 	
-	public function modificaPrestazione($id, $data_reg, $data_mov, $intestatario, $descrizione, $tipo_pagamento, $dare, $avere, $cassa){
+	public function modificaMovimento($id, $data_reg, $data_mov, $intestatario, $descrizione, $tipo_pagamento, $dare, $avere, $cassa){
 		if($stmt = $this->conn->prepare("UPDATE PRIMA_NOTA SET DATA_REG = ?, DATA_MOV = ?, INTESTATARIO = ?, DESCRIZIONE = ?, TIPO_PAGAMENTO = ?, DARE = ?, AVERE = ?, CASSA = ? WHERE ID = ? AND KCO = ?")){
 			$stmt->bind_param("sssssiiiii", $data_reg, $data_mov, $intestatario, $descrizione, $tipo_pagamento, $dare, $avere, $cassa, $this->id, $_SESSION['company_id']);
 			if(!$stmt->execute()){
@@ -52,7 +52,7 @@ class PrimaNota{
 				}
 		}
 	}
-	public function rimuoviPrestazione(){
+	public function rimuoviMovimento(){
 		if($stmt = $this->conn->prepare("UPDATE PRIMA_NOTA SET ELIMINATO = NOW() WHERE ID = ? AND KCO = ?")){
 			$stmt->bind_param("ii", $this->id, $_SESSION['company_id']);
 			if(!$stmt->execute()){
@@ -62,7 +62,7 @@ class PrimaNota{
 		}
 	}
 	
-	public function aggiungiPrestazione($data_reg, $data_mov, $intestatario, $descrizione, $tipo_pagamento, $dare, $avere, $cassa){
+	public function aggiungiMovimento($data_reg, $data_mov, $intestatario, $descrizione, $tipo_pagamento, $dare, $avere, $cassa){
 		if($stmt = $this->conn->prepare("INSERT INTO PRIMA_NOTA SET DATA_REG = ?, DATA_MOV = ?, INTESTATARIO = ?, DESCRIZIONE = ?, TIPO_PAGAMENTO = ?, DARE = ?, AVERE = ?, CASSA = ?, KCO=?"))
 			$stmt->bind_param("sssssiiii", $data_reg, $data_mov, $intestatario, $descrizione, $tipo_pagamento, $dare, $avere, $cassa, $_SESSION['company_id']);
 			if(!$stmt->execute()){

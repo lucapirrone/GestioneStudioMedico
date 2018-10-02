@@ -25,34 +25,27 @@
 		
 	 	<?php createInputToken(); 	?>
 		  
-	 	<?php createRequestToken(); 	?>
-		  
-		<input type="hidden" name="action_code" value="3"/> 
-		
-		<input type="hidden" name="action" value="request"/> 
 		  
 		<!-- RIGA 1 -->
-		  
-		
-		<li class="fill" style="width: 10%; padding-right: 10px; padding-left: 10px;">
+  
+
+	   <li class="fill" style="width: 15%; padding-right: 10px; padding-left: 10px;">
 		   <label class="description" for="element_1">Titolo</label>
-		   	<select name="titolo" type="text">
-				<option selected="true" value="<?php echo $paziente->titolo; ?>"><?php echo $paziente->titolo; ?></option>
+		   	<select name="sesso" type="text" class="form-control">
+				<option selected="true" value="<?php $paziente->titolo; ?>"><?php echo $paziente->titolo; ?></option>
 				<option value="SIG">Sig</option>
 				<option value="SIG.RA">Sig.ra</option>
 			</select> 
 		</li>
-		  
-		<li class="fill" style="width: 30%;">
-		   <label class="description" for="element_1">Cognome</label>
-		   <input name="cognome" type="text" value="<?php echo $paziente->cognome; ?>"/>      
-		</li>	
-		<li class="fill" style="width: 30%; padding-right: 10px; padding-left: 10px; ">
+		<li class="fill" style="width: 40%; padding-right: 10px; padding-left: 10px; ">
 		   <label class="description" for="element_1">Nome</label>
-		   <input name="nome" type="text" value="<?php echo $paziente->nome; ?>"/>   
+		   <input name="nome" type="text" class="form-control" value="<?php echo $paziente->nome; ?>"/>   
+		</li> 
+		<li class="fill" style="width: 40%;">
+		   <label class="description" for="element_1">Cognome</label>
+		   <input name="cognome" type="text" class="form-control" value="<?php echo $paziente->cognome; ?>"/>      
 		</li>
-		  
-		  <li class="fill" style="width: 10%;">
+		 <li class="fill" style="width: 5%;">
 		   <label class="description" for="element_1">Sesso</label>
 		  	<select name="sesso" type="text">
 				<option selected="true" value="<?php echo $paziente->sesso; ?>"><?php echo $paziente->sesso; ?></option>
@@ -61,16 +54,17 @@
 				<option value="A">Altro</option>
 			</select>     
 		</li>
-		  
-		  <li class="fill" style="width: 20%;">
-		   <label class="description" for="element_1">Data di nascita</label>
-			<input type="date"  name="data" value="<?php echo date('Y-m-d'); ?>" step="1" required/>
-			
-		</li>
 		 		  
 		  
 		  <!-- RIGA 3 -->
-		  
+		 <li class="fill" style="width: 35%">
+		   <label class="description" for="element_1">Stato</label>
+		   <input name="stato" type="text" value="<?php echo $paziente->stato; ?>"/> 
+		</li> 
+		  <li class="fill" style="width: 55%">
+		   <label class="description" for="element_1">Indirizzo</label>
+		   <input name="indirizzo" type="text" value="<?php echo $paziente->indirizzo; ?>"/>      
+		</li>
 		  		  
 		<li class="fill" style="width: 10%">
 		   <label class="description" for="element_1">Privacy</label>
@@ -81,33 +75,21 @@
 			</select> 	   
 		</li>
 		  
-		<li class="fill" style="width: 55%">
-		   <label class="description" for="element_1">Indirizzo</label>
-		   <input name="indirizzo" type="text" value="<?php echo $paziente->indirizzo; ?>"/>      
-		</li>
-		  
-		<li class="fill" style="width: 35%">
-		   <label class="description" for="element_1">Stato</label>
-		   <input name="stato" type="text" value="<?php echo $paziente->stato; ?>"/> 
-		</li>
-		  
 		  <!-- RIGA 4 -->
 
-		  
-		<li class="fill" style="width: 20%">
-		   <label class="description" for="element_1">Provincia</label>
-		   <input name="provincia" type="text" value="<?php echo $paziente->provincia; ?>"/> 
+		 <li class="fill" style="width: 20%">
+		   <label class="description" for="element_1">CAP</label>
+		   <input name="cap" type="text" value="<?php echo $paziente->cap; ?>"/> 
 		</li>
-		  
-		  
-		<li class="fill" style="width: 60%">
+		 <li class="fill" style="width: 60%">
 		   <label class="description" for="element_1">Città</label>
 		   <input name="citta" type="text" value="<?php echo $paziente->citta; ?>"/> 
 		</li>
 		<li class="fill" style="width: 20%">
-		   <label class="description" for="element_1">CAP</label>
-		   <input name="cap" type="text" value="<?php echo $paziente->cap; ?>"/> 
+		   <label class="description" for="element_1">Provincia</label>
+		   <input name="provincia" type="text" value="<?php echo $paziente->provincia; ?>"/> 
 		</li>
+
 		
 		    <!-- RIGA 5 -->
 		  
@@ -146,7 +128,7 @@
 	   </li>
 		  
 		  <li class="buttons">
-			<input id="bn_modifica" class="button_text" type="submit" name="submit" value="Salva Anagrafica"/>
+			<input id="bn_modifica" class="btn btn-light" type="submit" name="submit" value="Salva Anagrafica"/>
 		 </li>
       </ul>
    </form>
