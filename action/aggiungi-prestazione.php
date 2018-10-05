@@ -123,6 +123,8 @@
 		if($flag_iva)	$iva = 22;
 		if($flag_ritenuta)	$ritenuta = 20;
 		
+		include '../../lib/fpdf/generatepdf.php';
+		
 		if($prest->fatturato==$co->id){
 			stampaFattura(
 				$co->nome,
@@ -144,7 +146,6 @@
 			);
 			
 		}else{
-			
 			
 			stampaFattura(
 				$medico->cognome." ".$medico->nome,

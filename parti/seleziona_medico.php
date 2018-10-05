@@ -26,7 +26,7 @@
 
 <script>
 $('#select_medico').on("click", function(){
-	
+	console.log($("#id_medico").val());
 	window.location.replace("?<?php echo http_build_query($_GET); ?>&id_medico="+$("#id_medico").val());
 
 });
