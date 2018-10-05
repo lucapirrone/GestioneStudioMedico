@@ -49,7 +49,7 @@
 		  	  
 		  <li class="fill" style="width: 20%;">
 		   <label class="description" for="element_1">Data di nascita</label>
-			<input type="date"  name="data" value="<?php echo  date('m/d/Y',$paziente->data); ?>" step="1" required/>
+			<input type="date"  name="data" value="<?php echo  date('Y-m-d',$paziente->data); ?>" step="1" readonly/>
 			
 		</li>	  
 		  

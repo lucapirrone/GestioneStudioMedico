@@ -10,15 +10,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 <li class="fill fb-autocomplete form-group field-nome">
-   <label class="description" for="element_1">Medico</label>
+   <label class="description" for="element_1">Societa Esterna</label>
 	
 	<div class="auto-widget">
-		<input type="text" id="input_medico"/>
+		<input type="text" id="input_societa"/>
 		
-		<input name="id_medico" id="id_medico" hidden>
+		<input name="id_societa" id="id_societa" hidden>
 	</div>
 	
-   <span>Seleziona Il Medico</span>         
+   <span>Seleziona la Societa Esterna</span>         
 </li>
 
 <?php 
@@ -30,7 +30,7 @@
 
 $(function() {
 
-	$('#input_medico').autocomplete({
+	$('#input_societa').autocomplete({
 		
 		source: function(request, response) {
             $.ajax({
@@ -39,7 +39,7 @@ $(function() {
                 data: { 
 				    query: request.term,
 					action_token: '<?php echo $action_token; ?>',
-					action_code: 4,
+					action_code: 7,
 					action: 'request'
 				}, 
                 success: function (data) {
@@ -54,7 +54,6 @@ $(function() {
 							label: entry.label,
 							id: entry.id,
 							nome: entry.nome,
-							cognome: entry.cognome,
 						};
 						newArray[i] = newObject;
 						i++;
@@ -72,7 +71,7 @@ $(function() {
 			event.preventDefault();
 			console.log(ui);
 			$("#input_medico").val(ui.item.label);
-			$("#id_medico").val(ui.item.id);
+			$("#id_societa").val(ui.item.id);
 		},
 		
 	});

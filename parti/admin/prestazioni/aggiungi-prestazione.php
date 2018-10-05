@@ -4,6 +4,8 @@
 
 	include "action/gestisci-prestazione.php";
 
+	$co = new Company($conn);
+
 ?>
 
 		
@@ -21,7 +23,7 @@
 	   <li class="fill" style="width: 30%; float: left;">
 		   <label class="description">Fattura</label>
 			<select name="fatturato" type="text" class="form-control">
-				<option value="ARTEMIDE">ARTEMIDE</option>
+				<option value="<?php echo $co->nome; ?>"><?php echo $co->nome; ?></option>
 				<option value="MEDICO">MEDICO</option>
 			</select>  
 		  

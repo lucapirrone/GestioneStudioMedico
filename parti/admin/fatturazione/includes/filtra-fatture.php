@@ -5,7 +5,7 @@
 
 	
 		<?php 
-		$action_token = $_SESSION['action_token'] = md5(uniqid(mt_rand(), true)); 
+		if(!isset($action_token))	$action_token = $_SESSION['action_token'] = md5(uniqid(mt_rand(), true)); 
 
 		
 		$sm = new SearchMedico($conn);
@@ -157,6 +157,23 @@
 		$('#form_filtri').submit();
 
 	}
+	
+	$(document).on("keypress","#select_prestazione",function(event){
+    if (event.ctrlKey || event.metaKey) {
+        var id =$(this).parents("div[id*='select_prestazione']").attr("id").replace("s2id_","");
+        var element =$("#"+id);
+        if (event.which == 97){
+            var selected = [];
+            element.find("option").each(function(i,e){
+                selected[selected.length]=$(e).attr("value");
+            });
+            element.select2("val", selected);
+        } else if (event.which == 100){
+            element.select2("val", "");
+        }
+    }
+});
+
 	
 </script>
 	

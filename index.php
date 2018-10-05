@@ -14,7 +14,7 @@
 	foreach($pagine as $main){
 		if($main['sub']!=null){
 			foreach($main['sub'] as $voce){
-				if(!(isset($_GET['page'])) && $voce['default']){
+				if($voce['default']){
 					if (file_exists($voce['url'])){
 						$content = $voce['url'];
 						$title = $voce['nome'];
@@ -28,9 +28,11 @@
 				}
 			}
 		}else{
-			if (file_exists($main['url'])){
-				$content = $main['url'];
-				$title = $main['nome'];
+			if($main['default']){
+				if (file_exists($main['url'])){
+					$content = $main['url'];
+					$title = $main['nome'];
+				}
 			}
 		}
 	}
@@ -40,7 +42,7 @@
 <html>
 <head>
 
-<title>Referto in Cloud - <?php echo $title; ?></title>
+<title>GSM - <?php echo $title; ?></title>
 
 	<?php include("parti/css_includes.php"); ?>
 

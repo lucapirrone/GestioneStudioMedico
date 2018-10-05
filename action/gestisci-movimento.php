@@ -67,12 +67,12 @@
 		if($verso=="USCITA") $dare = $importo;
 		
 		$cassa = $avere-$dare;
-		
+				
 		$pn = new Movimento($conn);
 		
 		if(isset($_POST['id'])){
 			$id = $_POST['id'];
-			$pn->selectPazienteById($id);
+			$pn->selectMovimentoById($id);
 			$pn->modificaMovimento($id, $data_reg, $data_mov, $intestatario, $descrizione, $tipo_pagamento, $dare, $avere, $cassa);
 			
 			echo "<script>alert('Salvataggio Movimento Completato');</script>";

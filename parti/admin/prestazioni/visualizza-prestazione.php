@@ -2,7 +2,7 @@
 
 	if(!(isset($paginaIntegra) && $paginaIntegra === true)) exit();
 
-	$action_token = $_SESSION['action_token'] = md5(uniqid(mt_rand(), true));
+	if(!isset($action_token))	$action_token = $_SESSION['action_token'] = md5(uniqid(mt_rand(), true));
 
 	?>
 

@@ -88,19 +88,21 @@
 				"url"=>"parti/admin/dashboard/dashboard.php",
 				"image"=>"icona-fatturazione.png",
 				"class-icon"=>"fa fa-dashboard",
-				"sub"=>null
+				"sub"=>null,
+				"default"=>true
 			),
 			array(
 				"nome"=>"Fatturazione",
 				"image"=>"icona-fatturazione.png",
 				"class-icon"=>"fas fa-file-alt",
+				"default"=>false,
 				"sub"=>array(
 					array(
 					"nome"=>"Crea Fattura",
 					"code"=>"crea-fattura",
 					"url"=>"parti/admin/fatturazione/nuova-fattura.php",
 					"class-icon"=>"fas fa-plus",
-					"default"=>true,
+					"default"=>false,
 					"visibility"=>true
 					),
 					array(
@@ -117,13 +119,14 @@
 				"nome"=>"Anagrafica",
 				"image"=>"icona-anagrafica.png",
 				"class-icon"=>"fas fa-user",
+				"default"=>false,
 				"sub"=>array(
 					array(
 					"nome"=>"Visualizza Paziente",
 					"code"=>"visualizza-paziente",
 					"url"=>"parti/admin/anagrafica/paziente/visualizza-paziente.php",
 					"class-icon"=>"far fa-eye",
-					"default"=>true,
+					"default"=>false,
 					"visibility"=>true
 					),
 					array(
@@ -131,7 +134,7 @@
 					"code"=>"aggiungi-paziente",
 					"url"=>"parti/admin/anagrafica/paziente/aggiungi-paziente.php",
 					"class-icon"=>"fas fa-plus",
-					"default"=>true,
+					"default"=>false,
 					"visibility"=>false
 					),
 					array(
@@ -139,7 +142,7 @@
 					"code"=>"modifica-paziente",
 					"url"=>"parti/admin/anagrafica/paziente/modifica-paziente.php",
 					"class-icon"=>"fas fa-edit",
-					"default"=>true,
+					"default"=>false,
 					"visibility"=>false
 					),
 					array(
@@ -147,7 +150,7 @@
 					"code"=>"visualizza-medico",
 					"url"=>"parti/admin/anagrafica/medico/visualizza-medico.php",
 					"class-icon"=>"far fa-eye",
-					"default"=>true,
+					"default"=>false,
 					"visibility"=>true
 					),
 					array(
@@ -155,7 +158,7 @@
 					"code"=>"aggiungi-medico",
 					"url"=>"parti/admin/anagrafica/medico/aggiungi-medico.php",
 					"class-icon"=>"fas fa-plus",
-					"default"=>true,
+					"default"=>false,
 					"visibility"=>false
 					),
 					array(
@@ -163,7 +166,7 @@
 					"code"=>"modifica-medico",
 					"url"=>"parti/admin/anagrafica/medico/modifica-medico.php",
 					"class-icon"=>"far fa-eye",
-					"default"=>true,
+					"default"=>false,
 					"visibility"=>false
 					)
 				)
@@ -172,13 +175,14 @@
 				"nome"=>"Prestazioni",
 				"image"=>"icona-prestazioni.png",
 				"class-icon"=>"fas fa-vial",
+				"default"=>false,
 				"sub"=>array(
 					array(
 					"nome"=>"Visualizza Prestazioni",
 					"code"=>"visualizza-prestazione",
 					"url"=>"parti/admin/prestazioni/visualizza-prestazione.php",
 					"class-icon"=>"fas fa-eye",
-					"default"=>true,
+					"default"=>false,
 					"visibility"=>true
 					),
 					array(
@@ -203,6 +207,7 @@
 				"nome"=>"Prima Nota",
 				"image"=>"icona-primanota.png",
 				"class-icon"=>"fas fa-pencil-alt",
+				"default"=>false,
 				"sub"=>array(
 					array(
 					"nome"=>"Registra Movimento",
@@ -213,12 +218,28 @@
 					"visibility"=>true
 					),
 					array(
-					"nome"=>"Stampa",
+					"nome"=>"Stampa Prima Nota",
+					"code"=>"filtra-movimenti",
+					"url"=>"parti/admin/primanota/filtra-movimenti.php",
+					"class-icon"=>"fas fa-print",
+					"default"=>false,
+					"visibility"=>true
+					),
+					array(
+					"nome"=>"Stampa Prima Nota",
 					"code"=>"primanota-stampa",
 					"url"=>"parti/admin/primanota/primanota-stampa.php",
 					"class-icon"=>"fas fa-print",
 					"default"=>false,
-					"visibility"=>true
+					"visibility"=>false
+					),
+					array(
+					"nome"=>"Modifica Movimento",
+					"code"=>"modifica-movimento",
+					"url"=>"parti/admin/primanota/modifica-movimento.php",
+					"class-icon"=>"fas fa-pencil-alt",
+					"default"=>false,
+					"visibility"=>false
 					)
 				)
 			)

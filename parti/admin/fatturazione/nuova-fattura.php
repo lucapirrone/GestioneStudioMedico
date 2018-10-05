@@ -3,41 +3,42 @@
 	if(!(isset($paginaIntegra) && $paginaIntegra === true)) exit();
 
 
-	if(!isset($_GET['id_paziente'])){
-		include 'parti/seleziona_paziente.php';
+	if(!(isset($_GET['id_paziente']) || isset($_GET['id_medico']) || isset($_GET['id_societa']))){
+		include 'parti/seleziona_emittente_fattura.php';
 	}else{
 		
-	$paziente = new Paziente($conn);
-	$paziente->selectPazienteById($_GET['id_paziente']);
+	if(isset($_GET['id_paziente'])){
+		$paziente = new Paziente($conn);
+		$paziente->selectPazienteById($_GET['id_paziente']);
+		$tipo_dest = "id_paziente";
+		$id_dest = $_GET['id_paziente'];
+		$dest_fattura = new DestinatarioFattura($paziente->nome, $paziente->cognome, $paziente->data, $paziente->titolo, $paziente->indirizzo, $paziente->citta, $paziente->cap, $paziente->provincia,	$paziente->stato,	$paziente->tel_1,	$paziente->tel_2,	$paziente->cod_fiscale, $paziente->p_iva, $paziente->note, $paziente->email);
+	}	
+	if(isset($_GET['id_medico'])){
+		$medico = new Medico($conn);
+		$medico->selectMedicoById($_GET['id_medico']);
+		$tipo_dest = "id_medico";
+		$id_dest = $_GET['id_medico'];
+		$dest_fattura = new DestinatarioFattura($medico->nome, $medico->cognome, $medico->data, $medico->titolo, $medico->indirizzo, $medico->citta, $medico->cap, $medico->provincia,	$medico->stato,	null, null,	$medico->cod_fiscale, $medico->p_iva, null, null);
+	}	
+	if(isset($_GET['id_societa'])){
+		$societaesterna = new SocietaEsterna($conn);
+		$societaesterna->selectSocietaEsternaById($_GET['id_societa']);
+		$tipo_dest = "id_societa";
+		$id_dest = $_GET['id_societa'];
+		$dest_fattura = new DestinatarioFattura($societaesterna->nome, null, null, null, $societaesterna->indirizzo, $societaesterna->citta, $societaesterna->cap, $societaesterna->provincia,	null,	null, null,	$societaesterna->cod_fiscale, $societaesterna->p_iva, null, null);
+	}
 ?>
 
 
 		
-<h2 class="title">Informazioni Paziente Selezionato<i class="delete fas fa-edit" style="float: right" title="Modifica" id="modifica_anagrafica"></i></h2>
+<h2 class="title">Informazioni Destinatario Selezionato</h2>
 
 <form id="info_paziente" class="form-style-7 section" action="" method="post">
 	<ul>		
-		<script>
-		$('#modifica_anagrafica').on("click", function(){
 
-			<?php
-
-			$query = $_GET;
-			// replace parameter(s)
-			$query['page'] = 'modifica-paziente';
-			$query['id_paziente'] = $_GET['id_paziente'];
-			// rebuild url
-			$query_result = http_build_query($query);
-
-			?>
-			window.location.replace("?<?php echo $query_result; ?>");
-
-		});
-
-	</script>
-	
 		<?php 
-		$action_token = $_SESSION['action_token'] = md5(uniqid(mt_rand(), true));
+		if(!isset($action_token))	$action_token = $_SESSION['action_token'] = md5(uniqid(mt_rand(), true));
 		?>
 			  
 		<input type="hidden" name="action_token" value="<?php echo $action_token; ?>"/> 
@@ -45,55 +46,53 @@
 		<input type="hidden" name="action_code" value="6"/> 
 		
 		<input type="hidden" name="action" value="request"/> 
-	
-		<li class="fill" style="width: 90%;">
-		   <label class="description" for="element_1">Paziente</label>
-		   <input type="text" value="<?php echo $paziente->nome." ".$paziente->cognome; ?>" readonly/>      
-		</li>
-		<li class="fill" style="width: 10%;">
-		   <label class="description" for="element_1">ID Paziente</label>
-		   <input name="id_paziente" type="text" value="<?php echo $paziente->id; ?>" readonly/>      
-		</li>
 		
+		<input type="hidden" name="<?php echo $tipo_dest; ?>" value="<?php echo $id_dest; ?>"/> 
+	
+		<li class="fill">
+		   <label class="description" for="element_1">Paziente</label>
+		   <input type="text" value="<?php echo $dest_fattura->nome." ".$dest_fattura->cognome; ?>" readonly/>      
+		</li>
+				
 		<li class="fill">
 		   <label class="description" for="element_1">Indirizzo</label>
-		   <input type="text" value="<?php echo $paziente->indirizzo; ?>" readonly/>      
+		   <input type="text" value="<?php echo $dest_fattura->indirizzo; ?>" readonly/>      
 		</li>
 		
 		<li class="fill" style="width: 20%">
 		   <label class="description" for="element_1">Provincia</label>
-		   <input type="text" value="<?php echo $paziente->provincia; ?>" readonly/> 
+		   <input type="text" value="<?php echo $dest_fattura->provincia; ?>" readonly/> 
 		</li>
 		<li class="fill" style="width: 60%">
 		   <label class="description" for="element_1">Città</label>
-		   <input type="text" value="<?php echo $paziente->citta; ?>" readonly/> 
+		   <input type="text" value="<?php echo $dest_fattura->citta; ?>" readonly/> 
 		</li>
 		<li class="fill" style="width: 20%">
 		   <label class="description" for="element_1">CAP</label>
-		   <input type="text" value="<?php echo $paziente->cap; ?>" readonly/> 
+		   <input type="text" value="<?php echo $dest_fattura->cap; ?>" readonly/> 
 		</li>
 		
 		<li class="left">
 		   <label class="description" for="element_1">Codice Fiscale</label>
-		   <input type="text" value="<?php echo $paziente->cod_fiscale; ?>" readonly/> 
+		   <input type="text" value="<?php echo $dest_fattura->cod_fiscale; ?>" readonly/> 
 		</li>
 	
 	
 		<li class="right">
 		   <label class="description">Partita IVA</label>
-			<input type="text" value="<?php echo $paziente->p_iva; ?>" readonly/>			
+			<input type="text" value="<?php echo $dest_fattura->p_iva; ?>" readonly/>			
 	   </li>
 	
 	
 		<li class="left">
 		   <label class="description" for="element_1">1° Telefono</label>
-		   <input type="text" value="<?php echo $paziente->tel_1; ?>" readonly/> 
+		   <input type="text" value="<?php echo $dest_fattura->tel_1; ?>" readonly/> 
 		</li>
 	
 	
 		<li class="right">
 		   <label class="description">2° Telefono</label>
-			<input type="text" value="<?php echo $paziente->tel_2; ?>" readonly/>			
+			<input type="text" value="<?php echo $dest_fattura->tel_2; ?>" readonly/>			
 	   </li>
 		
 		

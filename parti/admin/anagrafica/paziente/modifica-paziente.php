@@ -25,23 +25,24 @@
 		
 	 	<?php createInputToken(); 	?>
 		  
-		  
 		<!-- RIGA 1 -->
+		  
+		<input name="id" value="<?php echo $paziente->id; ?>" type="hidden"/>
   
 
 	   <li class="fill" style="width: 15%; padding-right: 10px; padding-left: 10px;">
 		   <label class="description" for="element_1">Titolo</label>
-		   	<select name="sesso" type="text" class="form-control">
-				<option selected="true" value="<?php $paziente->titolo; ?>"><?php echo $paziente->titolo; ?></option>
+		   	<select name="titolo" type="text" class="form-control">
+				<option selected="true" value="<?php echo $paziente->titolo; ?>"><?php echo $paziente->titolo; ?></option>
 				<option value="SIG">Sig</option>
 				<option value="SIG.RA">Sig.ra</option>
 			</select> 
 		</li>
-		<li class="fill" style="width: 40%; padding-right: 10px; padding-left: 10px; ">
+		<li class="fill" style="width: 30%; padding-right: 10px; padding-left: 10px; ">
 		   <label class="description" for="element_1">Nome</label>
 		   <input name="nome" type="text" class="form-control" value="<?php echo $paziente->nome; ?>"/>   
 		</li> 
-		<li class="fill" style="width: 40%;">
+		<li class="fill" style="width: 30%;">
 		   <label class="description" for="element_1">Cognome</label>
 		   <input name="cognome" type="text" class="form-control" value="<?php echo $paziente->cognome; ?>"/>      
 		</li>
@@ -54,6 +55,12 @@
 				<option value="A">Altro</option>
 			</select>     
 		</li>
+		  
+	  <li class="fill" style="width: 20%;">
+		   <label class="description" for="element_1">Data di nascita</label>
+			<input type="date"  name="data" value="<?php echo  date('Y-m-d',$paziente->data); ?>" step="1" required/>
+			
+		</li>	  
 		 		  
 		  
 		  <!-- RIGA 3 -->

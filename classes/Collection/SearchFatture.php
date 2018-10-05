@@ -112,7 +112,7 @@ class SearchFatture{
 				$array_body = [
 					$fattura->numfattura,
 					$prestazione->nome,
-					date('m/d/Y', $fattura->data),
+					date('d/m/Y', $fattura->data),
 					$fattura->importo,
 					$fattura->flag_iva,
 					$fattura->flag_rit,

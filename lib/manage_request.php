@@ -42,7 +42,12 @@
 				array(
 					"code"=>"6",
 					"url"=>"action/aggiungi-prestazione.php",
-					"admin"=>false
+					"admin"=>true
+				),
+				array(
+					"code"=>"7",
+					"url"=>"action/autocomplete_societa_esterna_suggestions.php",
+					"admin"=>true
 				)
 			);
 
@@ -75,13 +80,18 @@
 		
 		if(isset($_GET['action_token']) && isset($_SESSION['action_token']) && $_GET['action_token'] === $_SESSION['action_token']){
 		
-			unset($_SESSION['action_token']);
+			//unset($_SESSION['action_token']);
 			
 			$actions = array(
 				array(
 					"code"=>"1",
 					"url"=>"action/get_file_secure.php",
 					"admin"=>false
+				),
+				array(
+					"code"=>"2",
+					"url"=>"action/primanota-stampa.php",
+					"admin"=>true
 				)
 			);
 

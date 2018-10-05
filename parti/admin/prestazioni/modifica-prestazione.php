@@ -8,6 +8,7 @@
 		$id_prestazione = $_GET['id_prestazione'];
 		$prestazione = new Prestazione($conn);
 		$prestazione->selectPrestazioneById($id_prestazione);
+		$co = new Company($conn);
 		
 ?>
 
@@ -31,7 +32,7 @@
 		   <label class="description">Fattura</label>
 			<select name="fatturato" type="text" class="form-control">
 				<option selected="selected" value="<?php echo $prestazione->fatturato;?>"><?php echo $prestazione->fatturato;?></option>
-				<option value="ARTEMIDE">ARTEMIDE</option>
+				<option value="<?php echo $co->nome; ?>"><?php echo $co->nome; ?></option>
 				<option value="MEDICO">MEDICO</option>
 			</select>  
 		  
