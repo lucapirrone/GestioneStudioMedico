@@ -14,18 +14,18 @@
 		<?php require 'modules/autocomplete_societa_esterna.php' ?>
 		
 		 <li class="buttons">
-            <input id="select_medico" class="btn btn-light" type="button" value="Seleziona Societa" />
+            <input id="select_societa" class="btn btn-light" type="button" value="Seleziona Societa" />
          </li>
 		
     </ul>
 </form>
 
 <?php 
-	if(!isset($token)) $token = $_SESSION['token'] = md5(uniqid(mt_rand(), true)); 
+	if(!isset($_SESSION['token'])) $token = $_SESSION['token'] = md5(uniqid(mt_rand(), true)); 
 ?>
 
 <script>
-$('#select_medico').on("click", function(){
+$('#select_societa').on("click", function(){
 	
 	window.location.replace("?<?php echo http_build_query($_GET); ?>&id_societa="+$("#id_societa").val());
 

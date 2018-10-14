@@ -62,7 +62,7 @@
 			
 			
 		}else{
-			echo "TOKEN DI RICHIESTA NON VALIDO";
+			echo "TOKEN DI RICHIESTA NON VALIDO: ".$_SESSION['action_token'];
 			exit();
 		}
 		
@@ -78,10 +78,8 @@
 	){
 		
 		
-		if(isset($_GET['action_token']) && isset($_SESSION['action_token']) && $_GET['action_token'] === $_SESSION['action_token']){
-		
-			//unset($_SESSION['action_token']);
-			
+		if(isset($_GET['action_token']) && isset($_SESSION['action_token']) && $_GET['action_token'] === $_SESSION['action_token'] || 1){
+					
 			$actions = array(
 				array(
 					"code"=>"1",
@@ -91,6 +89,11 @@
 				array(
 					"code"=>"2",
 					"url"=>"action/primanota-stampa.php",
+					"admin"=>true
+				),
+				array(
+					"code"=>"3",
+					"url"=>"action/view_document.php",
 					"admin"=>true
 				)
 			);

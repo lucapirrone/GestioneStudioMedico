@@ -52,7 +52,6 @@
     }
 
     if(checkValidate($array_info, $conn) && $_GET['token']===$_SESSION['token']) {
-		unset($_SESSION['token']);
 		if($_GET['action']=="delete"){
 			
 			$codicesocieta = $_GET['codicesocieta'];

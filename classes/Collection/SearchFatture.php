@@ -11,8 +11,8 @@ class SearchFatture{
 	}
 	
 	public function filtraFatture($id_medico, $id_prestazione, $datainizio, $datafine){
-		$datainizio = strtotime($datainizio);
-		$datafine = strtotime($datafine);
+		$startDay = strtotime("midnight", strtotime($datainizio));
+		$endDay  = strtotime("tomorrow", strtotime($datafine)) - 1;
 			
 		$id_medico = str_replace(","," OR ",$id_medico);
 		
@@ -24,10 +24,10 @@ class SearchFatture{
 			AND PREST_EFF.ID_PREST = PRESTAZIONI.ID
 			AND PRESTAZIONI.ID IN ($id_prestazione)
 			AND ( $id_medico IN(PREST_EFF.ID_MEDICO_1,PREST_EFF.ID_MEDICO_2,PREST_EFF.ID_MEDICO_3,PREST_EFF.ID_MEDICO_4,PREST_EFF.ID_MEDICO_5))
-			AND FATTURE.DATA > $datainizio
-			AND FATTURE.DATA < $datafine
+			AND FATTURE.DATA_FAT >= $startDay
+			AND FATTURE.DATA_FAT <= $endDay
 			";
-		//echo $q;
+		//echo $q; 
 		
 		if ($stmt = $this->conn->prepare("
 			SELECT FATTURE.ID
@@ -37,10 +37,10 @@ class SearchFatture{
 			AND PREST_EFF.ID_PREST = PRESTAZIONI.ID
 			AND PRESTAZIONI.ID IN (".$id_prestazione.")
 			AND ( ".$id_medico." IN(PREST_EFF.ID_MEDICO_1,PREST_EFF.ID_MEDICO_2,PREST_EFF.ID_MEDICO_3,PREST_EFF.ID_MEDICO_4,PREST_EFF.ID_MEDICO_5))
-			AND FATTURE.DATA > ?
-			AND FATTURE.DATA < ?
-			")) { 
-			if($stmt->bind_param("ss", $datainizio, $datafine)){
+			AND FATTURE.DATA_FAT >= ?
+			AND FATTURE.DATA_FAT <= ?
+			")) {   
+			if($stmt->bind_param("ss", $startDay, $endDay)){
 				if($stmt->execute()){
 					if(!$stmt->store_result()) echo mysqli_error($conn);
 					if ($stmt->num_rows >= 1) { //Uses the stored result and counts the rows.
@@ -54,11 +54,11 @@ class SearchFatture{
 						return $this->fatture;
 					}
 				}else{
-					echo mysqli_error($this->conn);
+					echo "Errore: ".mysqli_error($this->conn);
 				}
 			}
 		}else{
-			//echo mysqli_error($this->conn); 	QUANDO VENGONO PASSATI ELEMENTI NULLI
+			echo "Errore: ".mysqli_error($this->conn); 	//QUANDO VENGONO PASSATI ELEMENTI NULLI
 		}
 	}
 	
@@ -80,7 +80,8 @@ class SearchFatture{
 			"Dest 4", 
 			"% 4", 
 			"Dest 5", 
-			"% 5"
+			"% 5",
+			""
 		];
 
 		
@@ -96,7 +97,7 @@ class SearchFatture{
 				$prest_eff->selectPrestEffById($fattura->id_prest_eff);
 
 				$prestazione = new Prestazione($this->conn);
-				$prestazione->selectPrestazioneById($prest_eff->id_prestazione);
+				$prestazione->selectPrestazioneById($prest_eff->id_prest);
 
 				$medico1 = new Medico($this->conn);
 				$medico1->selectMedicoById($prest_eff->id_medico_1);
@@ -112,7 +113,7 @@ class SearchFatture{
 				$array_body = [
 					$fattura->numfattura,
 					$prestazione->nome,
-					date('d/m/Y', $fattura->data),
+					date('d/m/Y', $fattura->data_fat),
 					$fattura->importo,
 					$fattura->flag_iva,
 					$fattura->flag_rit,
@@ -125,7 +126,13 @@ class SearchFatture{
 					$medico4->nome." ".$medico4->cognome,
 					$prestazione->perc_medico_4,
 					$medico5->nome." ".$medico5->cognome,
-					$prestazione->perc_medico_5				
+					$prestazione->perc_medico_5,
+					array(
+						array(
+							"action"=>"view",
+							"id_fattura"=>$fattura->id
+						)
+					)
 				];
 
 				$tabella->designBody($array_body);

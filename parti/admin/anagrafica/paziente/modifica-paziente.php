@@ -7,7 +7,7 @@
 ?>	
 <?php
 
-	if(!isset($_GET['id_paziente'])){
+	if(!isset($_GET['id_paziente']) || $_GET['id_paziente']==""){
 		include 'parti/seleziona_paziente.php';
 	}else{
 		$id_paziente = $_GET['id_paziente'];
@@ -48,7 +48,7 @@
 		</li>
 		 <li class="fill" style="width: 5%;">
 		   <label class="description" for="element_1">Sesso</label>
-		  	<select name="sesso" type="text">
+		  	<select name="sesso" type="text" class="form-control">
 				<option selected="true" value="<?php echo $paziente->sesso; ?>"><?php echo $paziente->sesso; ?></option>
 				<option value="M">Uomo</option>
 				<option value="F">Donna</option>
@@ -75,7 +75,7 @@
 		  		  
 		<li class="fill" style="width: 10%">
 		   <label class="description" for="element_1">Privacy</label>
-		  	<select name="privacy" type="text">
+		  	<select name="privacy" type="text" class="form-control">
 				<option selected="true" value="<?php echo $paziente->privacy; ?>"><?php echo $paziente->privacy; ?></option>
 				<option value="SI">Si</option>
 				<option value="NO">No</option>

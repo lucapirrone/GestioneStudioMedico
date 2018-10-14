@@ -5,6 +5,7 @@ class Movimento{
 	private $conn;
 	//Attributi
 	public $id;
+	public $num_fat;
 	public $data_reg;
 	public $data_mov;
 	public $intestatario;
@@ -21,14 +22,14 @@ class Movimento{
     }
 	
 	public function selectMovimentoById($id){
-		if($stmt = $this->conn->prepare("SELECT ID, DATA_REG, DATA_MOV, INTESTATARIO, DESCRIZIONE, TIPO_PAGAMENTO, DARE, AVERE, CASSA FROM PRIMA_NOTA WHERE ID = ? AND KCO = ?")) {
+		if($stmt = $this->conn->prepare("SELECT ID, NUM_FAT, DATA_REG, DATA_MOV, INTESTATARIO, DESCRIZIONE, TIPO_PAGAMENTO, DARE, AVERE, CASSA FROM PRIMA_NOTA WHERE ID = ? AND KCO = ?")) {
             $stmt->bind_param('ii', $id, $_SESSION['company_id']); // esegue il bind del parametro '$user_id'.
             $stmt->execute(); // Esegue la query creata.
             $stmt->store_result();
 			
             if($stmt->num_rows == 1) { // se l'utente esiste
 				$this->id = $id;
-				$stmt->bind_result($this->id, $this->data_reg, $this->data_mov, $this->intestatario, $this->descrizione, $this->tipo_pagamento, $this->dare, $this->avere, $this->cassa);
+				$stmt->bind_result($this->id, $this->num_fat, $this->data_reg, $this->data_mov, $this->intestatario, $this->descrizione, $this->tipo_pagamento, $this->dare, $this->avere, $this->cassa);
 				$stmt->fetch();
 				
 				return true;
@@ -62,13 +63,15 @@ class Movimento{
 		}
 	}
 	
-	public function aggiungiMovimento($data_reg, $data_mov, $intestatario, $descrizione, $tipo_pagamento, $dare, $avere, $cassa){
-		if($stmt = $this->conn->prepare("INSERT INTO PRIMA_NOTA SET DATA_REG = ?, DATA_MOV = ?, INTESTATARIO = ?, DESCRIZIONE = ?, TIPO_PAGAMENTO = ?, DARE = ?, AVERE = ?, CASSA = ?, KCO=?"))
-			$stmt->bind_param("sssssiiii", $data_reg, $data_mov, $intestatario, $descrizione, $tipo_pagamento, $dare, $avere, $cassa, $_SESSION['company_id']);
-			if(!$stmt->execute()){
+	public function aggiungiMovimento($num_fat, $data_reg, $data_mov, $intestatario, $descrizione, $tipo_pagamento, $dare, $avere, $cassa){
+		if($stmt = $this->conn->prepare("INSERT INTO PRIMA_NOTA SET NUM_FAT=?, DATA_REG = ?, DATA_MOV = ?, INTESTATARIO = ?, DESCRIZIONE = ?, TIPO_PAGAMENTO = ?, DARE = ?, AVERE = ?, CASSA = ?, KCO=?"))
+			$stmt->bind_param("ssssssiiii", $num_fat, $data_reg, $data_mov, $intestatario, $descrizione, $tipo_pagamento, $dare, $avere, $cassa, $_SESSION['company_id']);
+			if($stmt->execute()){
+				return true;
+			}else{
 				echo("Errore: ".mysqli_error($this->conn));
 				return false;
-				}
+			}
 	}
 	
 	

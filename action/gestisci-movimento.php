@@ -1,6 +1,7 @@
 <?php
 
     $array_info = [
+        "num_fat",
         "intestatario",
 		"descrizione",
 		"data_mov",
@@ -77,7 +78,7 @@
 			
 			echo "<script>alert('Salvataggio Movimento Completato');</script>";
 		}else{
-			$pn->aggiungiMovimento($data_reg, $data_mov, $intestatario, $descrizione, $tipo_pagamento, $dare, $avere, $cassa);
+			$pn->aggiungiMovimento($num_fat, $data_reg, $data_mov, $intestatario, $descrizione, $tipo_pagamento, $dare, $avere, $cassa);
 			echo "<script>alert('Salvataggio Nuovo Movimento Completato');</script>";
 		}
 		

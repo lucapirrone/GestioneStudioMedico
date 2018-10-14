@@ -2,7 +2,7 @@
 
 	if(!(isset($paginaIntegra) && $paginaIntegra === true)) exit();
 
-	if(!isset($action_token))	$action_token = $_SESSION['action_token'] = md5(uniqid(mt_rand(), true));
+	if(!isset($_SESSION['action_token']) || !isset($action_token))	$action_token = $_SESSION['action_token'] = md5(uniqid(mt_rand(), true));
 
 	?>
 
@@ -18,7 +18,7 @@
 		
 	   <li class="fill" style="width: 50%; float: left;">
 		   	<label class="description">Prestazione</label>
-			<select class="element select big" name="id_prestazione" id="prestazione">
+			<select class="element select big form-control" name="id_prestazione" id="prestazione">
 				<option value="">SELEZIONA LA PRESTAZIONE</option>
 				<?php 
 					$sp = new SearchPrestazioni($conn);

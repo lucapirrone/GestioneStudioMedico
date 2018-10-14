@@ -3,6 +3,7 @@
 
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 
 <li class="fill fb-autocomplete form-group field-nome">
@@ -14,11 +15,11 @@
 		<input name="id_paziente" id="id_paziente" hidden>
 	</div>
 	
-   <span>Seleziona il paziente</span>         
+   <span>Seleziona il Paziente</span>         
 </li>
 
 <?php 
-	if(!isset($action_token))	$action_token = $_SESSION['action_token'] = md5(uniqid(mt_rand(), true));
+	if(!isset($_SESSION['action_token']) || !isset($action_token))	$action_token = $_SESSION['action_token'] = md5(uniqid(mt_rand(), true));
 ?>
 
 <script>

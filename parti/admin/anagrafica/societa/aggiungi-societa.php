@@ -56,7 +56,7 @@
 	   </li>
 		  
 		  <li class="buttons">
-			<input id="bn_modifica" class="button_text" type="submit" name="submit" value="Aggiungi Medico"/>
+			<input id="bn_modifica" class="button_text" type="submit" name="submit" value="Aggiungi Societa"/>
 		 </li>
       </ul>
    </form>

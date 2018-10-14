@@ -3,9 +3,22 @@
 	include("parti/js_includes.php");
 		
 	if(!(isset($paginaIntegra) && $paginaIntegra === true)) exit();
+	
+	$fromdata = date("d/m/Y", strtotime($_GET['data_inizio']));
+	$todata = date("d/m/Y", strtotime($_GET['data_fine']));
+
+	if($fromdata == $todata){
+		echo'
+			<h2 class="title">Prima Nota del '.$fromdata.'</h2>
+		';
+	}else{
+		echo '
+			<h2 class="title">Prima Nota dal '.$fromdata.' al '.$todata.'</h2>
+		';
+	}
+
 ?>
 
-<h2 class="title">Prima Nota dal <?php echo $_GET['data_inizio']; ?> al <?php echo $_GET['data_fine']; ?></h2>
 
 
 <?php

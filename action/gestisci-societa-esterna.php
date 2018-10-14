@@ -2,22 +2,12 @@
 
     $array_info = [
         "nome",
-		"cognome",
-		"sesso",
-		"data",
-		"titolo",
 		"indirizzo",
+		"prov",
 		"citta",
 		"cap",
-		"provincia",
-		"stato",
-		"tel_1",
-		"tel_2",
-		"cod_fisc",
-		"p_iva",
-		"note",
-		"privacy",
-		"email"
+		"cod_fiscale",
+		"p_iva"
     ];
 
 	function _error($code, $addmsg){
@@ -52,36 +42,41 @@
             _error(400, null); 
             return $valido;       
         }		
-
+		
 		if(!checkToken()){
 			$valido = false; 
 			return $valido;
 		}
-		
+
         return $valido;
 
     }
 
     if(checkValidate($array_info, $conn)) { 
-
-				
+		
 		//Dichiarazione variabili prese da parametri post e trasformati in MAIUSCOLO
         foreach($array_info as $item){
 			${$item} = $_POST[$item];
 		}
 		
-		$p = new Paziente($conn);
+		$se = new SocietaEsterna($conn);
+		
 		if(isset($_POST['id'])){
 			$id = $_POST['id'];
-			$p->selectPazienteById($id);
-			$p->modificaPaziente($nome, $cognome, $sesso, strtotime($data), $titolo, $indirizzo, $citta, $cap, $provincia, $stato, $tel_1, $tel_2, $cod_fisc, $p_iva, $note, $privacy, $email);
-			
-			echo "<script>alert('Salvataggio Anagrafica Paziente Completato');</script>";
+			$se->selectSocietaEsternaById($id);
+			if($se->modificaSocietaEsterna($nome, $indirizzo, $prov, $citta, $cap, $cod_fiscale, $p_iva))
+				echo "<script>alert('Salvataggio Anagrafica Societa Completato');</script>";
+			else
+				echo "<script>alert('Salvataggio Anagrafica Societa NON Completato');</script>";
+
 		}else{
-			$p->aggiungiPaziente($nome, $cognome, $sesso, strtotime($data), $titolo, $indirizzo, $citta, $cap, $provincia, $stato, $tel_1, $tel_2, $cod_fisc, $p_iva, $note, $privacy, $email);
-			
-			echo "<script>alert('Salvataggio Nuovo Paziente Completato');</script>";
+			if($se->aggiungiSocietaEsterna($nome, $indirizzo, $prov, $citta, $cap, $cod_fiscale, $p_iva))
+				echo "<script>alert('Salvataggio Nuova Societa Completato');</script>";
+			else
+				echo "<script>alert('Salvataggio Nuova Societa NON Completato');</script>";
+
 		}
+			
 		
     }
 

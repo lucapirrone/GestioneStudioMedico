@@ -74,8 +74,7 @@ class SearchPrimaNota{
 	
 	public function buildTable(){
 		$array_keys = [
-			"ID", 
-			"Data Registrazione", 
+			"N FATTURA", 
 			"Data Movimento", 
 			"Intestatario", 
 			"Descrizione", 
@@ -96,8 +95,7 @@ class SearchPrimaNota{
 			foreach($this->movimenti as $movimento){
 
 				$array_body = [
-					$movimento->id,
-					date('d/m/Y', $movimento->data_reg),
+					$movimento->num_fat,
 					date('d/m/Y', $movimento->data_mov),
 					$movimento->intestatario,
 					$movimento->descrizione,
@@ -105,7 +103,10 @@ class SearchPrimaNota{
 					$movimento->avere,
 					$movimento->dare,
 					$movimento->cassa,
-					array("edit", "delete")
+					array(
+						array("action"=>"edit", "id_mov"=>$movimento->id),
+						array("action"=>"delete", "id_mov"=>$movimento->id)
+					)
 				];
 
 				$tabella->designBody($array_body);
@@ -115,7 +116,6 @@ class SearchPrimaNota{
 			
 			$last_row = [
 				"TOTALE",
-				"",
 				"",
 				"",
 				"",
@@ -138,8 +138,7 @@ class SearchPrimaNota{
 	
 	public function buildTableForPrint(){
 		$array_keys = [
-			"ID", 
-			"Data Registrazione", 
+			"N FATTURA", 
 			"Data Movimento", 
 			"Intestatario", 
 			"Descrizione", 
@@ -159,8 +158,7 @@ class SearchPrimaNota{
 			foreach($this->movimenti as $movimento){
 
 				$array_body = [
-					$movimento->id,
-					date('d/m/Y', $movimento->data_reg),
+					$movimento->num_fat,
 					date('d/m/Y', $movimento->data_mov),
 					$movimento->intestatario,
 					$movimento->descrizione,
@@ -177,7 +175,6 @@ class SearchPrimaNota{
 			
 			$last_row = [
 				"TOTALE",
-				"",
 				"",
 				"",
 				"",

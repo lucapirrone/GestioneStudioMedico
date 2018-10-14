@@ -14,12 +14,18 @@
 		  <?php createInputToken(); ?>
 		
 		  
-		<li class="fill" style="width: 50%;">
+		  
+		<li class="fill" style="width: 30%;">
+		   <label class="description" for="element_1">Numero Fattura</label>
+		   <input name="num_fat" type="text" required/>      
+		</li>	
+		  
+		<li class="fill" style="width: 30%;">
 		   <label class="description" for="element_1">Intestatario</label>
 		   <input name="intestatario" type="text" required/>      
 		</li>	
 		  		
-		<li class="fill" style="width: 50%;">
+		<li class="fill" style="width: 40%;">
 		   <label class="description" for="element_1">Descrizione</label>
 		   <input name="descrizione" type="text" required/>      
 		</li>	
@@ -40,7 +46,7 @@
 		  
 		<li class="fill" style="width: 20%;">
 		   <label class="description" for="element_1">Movimento in</label>
-		  	<select name="verso" type="text required">
+		  	<select name="verso" type="text" class="form-control" required>
 				<option value="">Seleziona una voce</option>
 				<option value="ENTRATA">Entrata</option>
 				<option value="USCITA">Uscita</option>

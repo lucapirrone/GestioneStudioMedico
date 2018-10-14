@@ -65,7 +65,7 @@
 		
 		$data = "%".strtoupper($_POST['query'])."%";
 	
-		if ($stmt_utente = $conn->prepare("SELECT  ID, NOME, INDIRIZZO, CAP, CITTA, COD_FISCALE, P_IVA FROM SOCIETA_ESTERNE where KCO = ? and NOME LIKE ?")){
+		if ($stmt_utente = $conn->prepare("SELECT  ID, NOME, INDIRIZZO, CAP, CITTA, COD_FISCALE, P_IVA FROM SOCIETA_ESTERNA where KCO = ? and NOME LIKE ?")){
 			$stmt_utente->bind_param("is", $_SESSION['company_id'], $data);
 			if($stmt_utente->execute()){ // esegue la query appena creata.
 				$stmt_utente->store_result();

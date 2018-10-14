@@ -19,7 +19,7 @@
    <span>Inserisci il codice della società</span>         
 </li>
 
-<?php if(!isset($action_token))	$action_token = $_SESSION['action_token'] = md5(uniqid(mt_rand(), true)); ?>
+<?php if(!isset($_SESSION['action_token']) || !isset($action_token))	$action_token = $_SESSION['action_token'] = md5(uniqid(mt_rand(), true)); ?>
 
 <script>
 	

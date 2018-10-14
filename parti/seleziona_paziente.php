@@ -21,7 +21,7 @@
 </form>
 
 <?php 
-	if(!isset($token)) $token = $_SESSION['token'] = md5(uniqid(mt_rand(), true)); 
+	if(!isset($_SESSION['token'])) $token = $_SESSION['token'] = md5(uniqid(mt_rand(), true)); 
 ?>
 
 <script>
@@ -30,5 +30,4 @@ $('#select_paz').on("click", function(){
 	window.location.replace("?<?php echo http_build_query($_GET); ?>&id_paziente="+$("#id_paziente").val());
 
 });
-	
 </script>

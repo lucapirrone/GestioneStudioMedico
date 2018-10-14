@@ -50,7 +50,7 @@ class Paziente{
 		}else{
 			echo("Errore: ".mysqli_error($this->conn));
 			return false;
-		} 
+		}
 	}
 	public function modificaPaziente($nome, $cognome, $sesso, $data, $titolo, $indirizzo, $citta, $cap, $prov, $stato, $tel_1, $tel_2, $cod_fiscale, $p_iva, $note, $privacy, $email){
 		if($stmt = $this->conn->prepare("UPDATE PAZIENTI SET NOME=?, COGNOME=?, SESSO=?, DATA=?, TITOLO=?, INDIRIZZO=?, CITTA=?, CAP=?, PROV=?, STATO=?, TEL_1=?, TEL_2=?, COD_FISCALE=?, P_IVA=?, NOTE=?, PRIVACY=?, EMAIL=? WHERE ID = ? AND KCO = ?")){
@@ -59,6 +59,9 @@ class Paziente{
 				echo("Errore: ".mysqli_error($this->conn));
 				return false;
 				}
+		}else{
+			echo("Errore: ".mysqli_error($this->conn));
+			return false;
 		}
 	}
 	public function rimuoviPaziente(){
@@ -68,15 +71,22 @@ class Paziente{
 				echo("Errore: ".mysqli_error($this->conn));
 				return false;
 				}
+		}else{
+			echo("Errore: ".mysqli_error($this->conn));
+			return false;
 		}
 	}
 	public function aggiungiPaziente($nome, $cognome, $sesso, $data, $titolo, $indirizzo, $citta, $cap, $prov, $stato, $tel_1, $tel_2, $cod_fiscale, $p_iva, $note, $privacy, $email){
-		if($stmt = $this->conn->prepare("INSERT INTO PAZIENTI SET NOME=?, COGNOME=?, SESSO=?, DATA=?, TITOLO=?, INDIRIZZO=?, CITTA=?, CAP=?, PROV=?, STATO=?, TEL_1=?, TEL_2=?, COD_FISCALE=?, P_IVA=?, NOTE=?, PRIVACY=?, EMAIL=?, KCO=?"))
+		if($stmt = $this->conn->prepare("INSERT INTO PAZIENTI SET NOME=?, COGNOME=?, SESSO=?, DATA=?, TITOLO=?, INDIRIZZO=?, CITTA=?, CAP=?, PROV=?, STATO=?, TEL_1=?, TEL_2=?, COD_FISCALE=?, P_IVA=?, NOTE=?, PRIVACY=?, EMAIL=?, KCO=?")){
 			$stmt->bind_param("sssssssssssssssssi",$nome, $cognome, $sesso, $data, $titolo, $indirizzo, $citta, $cap, $prov, $stato, $tel_1, $tel_2, $cod_fiscale, $p_iva, $note, $privacy, $email, $_SESSION['company_id']);
 			if(!$stmt->execute()){
 				echo("Errore: ".mysqli_error($this->conn));
 				return false;
 				}
+	}else{
+			echo("Errore: ".mysqli_error($this->conn));
+			return false;
+		}
 	}
 	
 }

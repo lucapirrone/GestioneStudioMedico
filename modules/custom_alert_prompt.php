@@ -11,6 +11,7 @@ Richiamare Dialog: dialog(messaggio);
 -->
 
 <!-- modal : start -->
+
 <div id="modal" class="modal-container">
   <div class="modal">
     <p id="messaggio_alert"></p>
@@ -22,7 +23,7 @@ Richiamare Dialog: dialog(messaggio);
 <div id="prompt" class="prompt-container">
   <div class="prompt">
 	  <p id="messaggio_prompt"></p>
-    <input type="text" name="input" id="prompt-textbox" style=" border-color: #ececec !important; width:  100%; margin: 25px 0;    border-width: 1px !important;"><br>
+    <input type="text" name="input" id="prompt-textbox" style=" border-color: #ececec !important; width: 100%; margin: 25px 0;    border-width: 1px !important;"><br>
     <button id="btn-ok">OK</button>
     <button id="btn-cancel">CANCEL</button>
   </div>

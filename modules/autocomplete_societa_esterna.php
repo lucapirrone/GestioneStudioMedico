@@ -6,7 +6,6 @@
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 <li class="fill fb-autocomplete form-group field-nome">
@@ -22,7 +21,7 @@
 </li>
 
 <?php 
-	if(!isset($action_token))	$action_token = $_SESSION['action_token'] = md5(uniqid(mt_rand(), true));
+	if(!isset($_SESSION['action_token']) || !isset($action_token))	$action_token = $_SESSION['action_token'] = md5(uniqid(mt_rand(), true));
 ?>
 
 <script>
@@ -70,7 +69,7 @@ $(function() {
 		select: function(event, ui) {
 			event.preventDefault();
 			console.log(ui);
-			$("#input_medico").val(ui.item.label);
+			$("#input_societa").val(ui.item.label);
 			$("#id_societa").val(ui.item.id);
 		},
 		

@@ -28,19 +28,23 @@
 		
 		  <input name="id" value="<?php echo $_GET['id_movimento']; ?>" type="hidden"/>
 		  
-		<li class="fill" style="width: 50%;">
+		<li class="fill" style="width: 30%;">
+		   <label class="description" for="element_1">Numero Fattura</label>
+		   <input name="num_fat" type="text" value="<?php echo $mov->num_fat; ?>" required/>      
+		</li>	
+		  	<li class="fill" style="width: 30%;">
 		   <label class="description" for="element_1">Intestatario</label>
 		   <input name="intestatario" type="text" value="<?php echo $mov->intestatario; ?>" required/>      
 		</li>	
 		  		
-		<li class="fill" style="width: 50%;">
+		<li class="fill" style="width: 40%;">
 		   <label class="description" for="element_1">Descrizione</label>
 		   <input name="descrizione" type="text" value="<?php echo $mov->descrizione; ?>" required/>      
 		</li>	
 		  
 	    <li class="fill" style="width: 30%;">
 		   <label class="description" for="element_1">Data Movimento</label>
-			<input type="date" name="data_mov" value="<?php echo date('d/m/Y', $mov->data_mov); ?>" step="1" required/>
+			<input type="date" name="data_mov" value="<?php echo date('Y-m-d', $mov->data_mov); ?>" step="1" required/>
 			
 		</li>
 		  
@@ -51,7 +55,7 @@
 		  
 		<li class="fill" style="width: 20%;">
 		   <label class="description" for="element_1">Movimento in</label>
-		  	<select name="verso" type="text required">
+		  	<select name="verso" type="text" class="form-control" required>
 				<option value="<?php echo $verso; ?>"><?php echo $verso; ?></option>
 				<option value="ENTRATA">Entrata</option>
 				<option value="USCITA">Uscita</option>

@@ -8,7 +8,7 @@
 		$timestamp_to = mktime(23, 59, 59, $month, date('t', $timestamp_from));
 
 
-		if ($fetchall_report = $conn->prepare("SELECT SUM(IMPORTO) FROM FATTURE WHERE DATA > ? AND DATA < ?")) { 
+		if ($fetchall_report = $conn->prepare("SELECT SUM(IMPORTO) FROM FATTURE WHERE DATA_FAT >= ? AND DATA_FAT <= ?")) { 
 			$fetchall_report->bind_param('ss', $timestamp_from, $timestamp_to); 
 
 			if($fetchall_report->execute()){ 

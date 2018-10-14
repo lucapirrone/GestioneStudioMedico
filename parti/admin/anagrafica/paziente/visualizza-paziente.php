@@ -7,7 +7,7 @@
 ?>	
 <?php
 
-	if(!isset($_GET['id_paziente'])){
+	if(!isset($_GET['id_paziente']) || $_GET['id_paziente']==""){
 		include 'parti/seleziona_paziente.php';
 	}else{
 		$id_paziente = $_GET['id_paziente'];

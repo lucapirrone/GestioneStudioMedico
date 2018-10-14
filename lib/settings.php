@@ -260,7 +260,7 @@ function log_admin_access($conn, $type)
 function createInputToken()
 {
     
-    $token = $_SESSION['token'] = md5(uniqid(mt_rand(), true));
+    if(!isset($_SESSION['token']) || !isset($token))	$token = $_SESSION['token'] = md5(uniqid(mt_rand(), true));
     
     echo '<input type="hidden" name="token" value="' . $token . '"/>';
 }
@@ -268,20 +268,37 @@ function createInputToken()
 function createRequestToken()
 {
     
-    if(!isset($action_token))	$action_token = $_SESSION['action_token'] = md5(uniqid(mt_rand(), true));
+    if(!isset($_SESSION['action_token']) || !isset($action_token))	$action_token = $_SESSION['action_token'] = md5(uniqid(mt_rand(), true));
     
     echo '<input type="hidden" name="action_token" value="' . $action_token . '"/>';
 }
 
 function checkToken()
 {
-    if(isset($_SESSION['token']) && $_POST['token'] === $_SESSION['token']) {
-        //unset($_SESSION['token']);
-        return true;
-    } else {
-        //unset($_SESSION['token']);
-        return false;
-    }
+	if(isset($_SESSION['token'])){
+		if(isset($_POST['token']))
+    	if($_POST['token'] === $_SESSION['token']){
+			return true;
+		}
+		
+		if(isset($_GET['token']))
+    	if($_GET['token'] === $_SESSION['token']){
+			return true;
+		}
+	}if(isset($_SESSION['action_token'])){
+		if(isset($_POST['action_token']))
+		if($_POST['action_token'] === $_SESSION['action_token']){
+			return true;
+		} 
+		
+		
+		if(isset($_GET['action_token']))
+		if($_GET['action_token'] === $_SESSION['action_token']){
+			return true;
+		}
+	}else{
+		return false;
+	}
 }
 
 ?>

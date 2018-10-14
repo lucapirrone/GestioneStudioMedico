@@ -5,7 +5,7 @@
 
 	
 		<?php 
-		if(!isset($action_token))	$action_token = $_SESSION['action_token'] = md5(uniqid(mt_rand(), true)); 
+		if(!isset($_SESSION['action_token']) || !isset($action_token))	$action_token = $_SESSION['action_token'] = md5(uniqid(mt_rand(), true)); 
 
 		
 		$sm = new SearchMedico($conn);
@@ -22,16 +22,18 @@
 
 		<li class="fill"style="width: 30%;">
 			<legend>Seleziona i medici</legend>
-			<select id="select_medico" multiple style="width: 100%;">      
+			<select id="select_medico" class="form-control" multiple style="width: 100%;">      
   				
 			</select> 
+			<input type="checkbox" id="select_all_medici"> Seleziona tutti i Medici
 		</li>
 		
 		<li class="fill"style="width: 30%;">
 			<legend>Seleziona le prestazioni</legend>          
-			<select id="select_prestazione" multiple style="width: 100%;">      
+			<select id="select_prestazione" class="form-control" multiple style="width: 100%;">      
 
-			</select>    
+			</select> 
+			<input type="checkbox" id="select_all_prestazioni"> Seleziona tutte le prestazioni   
 		</li>
 		
 		
@@ -158,21 +160,28 @@
 
 	}
 	
-	$(document).on("keypress","#select_prestazione",function(event){
-    if (event.ctrlKey || event.metaKey) {
-        var id =$(this).parents("div[id*='select_prestazione']").attr("id").replace("s2id_","");
-        var element =$("#"+id);
-        if (event.which == 97){
-            var selected = [];
-            element.find("option").each(function(i,e){
-                selected[selected.length]=$(e).attr("value");
-            });
-            element.select2("val", selected);
-        } else if (event.which == 100){
-            element.select2("val", "");
-        }
-    }
-});
+	
+	//Checkbox Seleziona tutt i medici
+	$("#select_all_medici").click(function(){
+		if($("#select_all_medici").is(':checked') ){
+			$("#select_medico > optgroup > option").prop("selected","selected");
+			$("#select_medico").trigger("change");
+		}else{
+			$("#select_medico > optgroup > option").removeAttr("selected");
+			 $("#select_medico").trigger("change");
+		}
+	});
+	
+	//Checkbox Seleziona tutte le prestazioni
+	$("#select_all_prestazioni").click(function(){
+		if($("#select_all_prestazioni").is(':checked') ){
+			$("#select_prestazione > optgroup > option").prop("selected","selected");
+			$("#select_prestazione").trigger("change");
+		}else{
+			$("#select_prestazione > optgroup > option").removeAttr("selected");
+			 $("#select_prestazione").trigger("change");
+		}
+	});
 
 	
 </script>

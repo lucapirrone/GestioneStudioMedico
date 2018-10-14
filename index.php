@@ -49,8 +49,6 @@
 </head>
 	<body>
 		
-		<?php include("parti/modules_includes.php"); ?>
-		
 		<div id="wrapper">
 						
 			<?php 

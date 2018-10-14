@@ -3,20 +3,20 @@
 class Medico{
 	
 	//VARIABILI
-	public $id;
-	public $tipo;
-	public $nome;
-	public $cognome;
-	public $titolo;
-	public $spec;
-	public $indirizzo;
-	public $citta;
-	public $cap;
-	public $prov;
-	public $cod_fiscale;
-	public $p_iva;
-	public $fattura;
-	public $kco;
+	public $id = null;
+	public $tipo = null;
+	public $nome = null;
+	public $cognome = null;
+	public $titolo = null;
+	public $spec = null;
+	public $indirizzo = null;
+	public $citta = null;
+	public $cap = null;
+	public $prov = null;
+	public $cod_fiscale = null;
+	public $p_iva = null;
+	public $fattura = null;
+	public $kco = null;
 	
 	//Fatture
 	private $ids = array();
@@ -39,7 +39,6 @@ class Medico{
 				
 				return true;
 			}else{
-				echo("Errore: ".mysqli_error($this->conn));
 				return false;
 			}
 			
@@ -62,6 +61,9 @@ class Medico{
 			echo("Errore: ".mysqli_error($this->conn));
 			return false;
 			}
+	}else{
+		echo("Errore: ".mysqli_error($this->conn));
+		return false;
 	}
 }
 	public function rimuoviMedico($id){
@@ -71,16 +73,23 @@ class Medico{
 				echo("Errore: ".mysqli_error($this->conn));
 				return false;
 				}
+		}else{
+			echo("Errore: ".mysqli_error($this->conn));
+			return false;
 		}
 	}
 	public function aggiungiMedico($tipo, $nome, $cognome, $titolo, $spec, $indirizzo, $citta, $cap, $prov, $cod_fiscale, $p_iva, $fattura){
-		if($stmt = $this->conn->prepare("INSERT INTO MEDICI SET TIPO=?, NOME=?, COGNOME=?, TITOLO=?, SPEC =?, INDIRIZZO=?, CITTA=?, CAP=?, PROV=?, COD_FISCALE=?, P_IVA=?, FATTURA=?, KCO=?"))
+		if($stmt = $this->conn->prepare("INSERT INTO MEDICI SET TIPO=?, NOME=?, COGNOME=?, TITOLO=?, SPEC =?, INDIRIZZO=?, CITTA=?, CAP=?, PROV=?, COD_FISCALE=?, P_IVA=?, FATTURA=?, KCO=?")){
 			$stmt->bind_param("sssssssssssii",$tipo, $nome, $cognome, $titolo, $spec, $indirizzo, $citta, $cap, $prov, $cod_fiscale, $p_iva, $fattura, $_SESSION['company_id']);
 			if(!$stmt->execute()){
 				echo("Errore: ".mysqli_error($this->conn));
 				return false;
 				}
-	}
+		}else{
+			echo("Errore: ".mysqli_error($this->conn));
+			return false;
+		}
 
+	}
 }
 ?>

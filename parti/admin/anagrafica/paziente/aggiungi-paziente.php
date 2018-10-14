@@ -19,7 +19,7 @@
 		  
 		<li class="fill" style="width: 10%; padding-right: 10px; padding-left: 10px;">
 		   <label class="description" for="element_1">Titolo</label>
-		  	<select name="titolo" type="text">
+		  	<select name="titolo" type="text" class="form-control">
 				<option value="SIG">Sig</option>
 				<option value="SIG.RA">Sig.ra</option>
 			</select> 
@@ -37,7 +37,7 @@
 		  
 		<li class="fill" style="width: 10%;">
 		   <label class="description" for="element_1">Sesso</label>
-		  	<select name="sesso" type="text">
+		  	<select name="sesso" type="text" class="form-control">
 				<option value="M">Uomo</option>
 				<option value="F">Donna</option>
 				<option value="A">Altro</option>
@@ -54,7 +54,7 @@
 		  		  
 		<li class="fill" style="width: 10%">
 		   <label class="description" for="element_1">Privacy</label>
-		  	<select name="privacy" type="text">
+		  	<select name="privacy" type="text" class="form-control">
 				<option value="SI">Si</option>
 				<option value="NO">No</option>
 			</select>	   

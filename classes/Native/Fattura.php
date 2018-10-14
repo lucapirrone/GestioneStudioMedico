@@ -7,8 +7,11 @@ class Fattura{
 	
 	//VARIABILI
 	public $id;
+	public $descrizione;
 	public $numfattura;
-	public $data;
+	public $annofattura;
+	public $data_reg;
+	public $data_fat;
 	public $importo;
 	public $nome_prest;
 	public $flag_iva;
@@ -48,73 +51,174 @@ class Fattura{
 		PREST_EFF.ID_MEDICO_1, PREST_EFF.ID_MEDICO_2, PREST_EFF.ID_MEDICO_3, PREST_EFF.ID_MEDICO_4, PREST_EFF.ID_MEDICO_5, FATTURE.BOLLO, FATTURE.IMPORTO_TOT
 		FROM FATTURE, PREST_EFF, PRESTAZIONI 
 		WHERE FATTURE.ID_PREST_EFF = PREST_EFF.ID AND PREST_EFF.ID_PREST = PRESTAZIONI.ID")) {
-            $stmt->execute(); // Esegue la query creata.
-            $stmt->store_result();
-			
-            if($stmt->num_rows == 1) { // se l'utente esiste
-				$stmt->bind_result($this->id, $this->numfattura, $this->data, $this->importo, $this->nome_prest, $this->flag_iva, $this->flag_rit, $this->nome_med1, $this->nome_med2, $this->nome_med3, $this->nome_med4, $this->nome_med5, $this->perc_med1, $this->perc_med2, $this->perc_med3, $this->perc_med4, $this->perc_med5, $this->id_med1, $this->id_med2, $this->id_med3, $this->id_med4, $this->id_med5, $this->bollo, $this->importo_tot);
-				$stmt->fetch();
-				
-				return true;
+            if($stmt->execute()){// Esegue la query creata.
+				if($stmt->store_result()){
+					if($stmt->num_rows == 1) { // se l'utente esiste
+						if($stmt->bind_result($this->id, $this->numfattura, $this->data, $this->importo, $this->nome_prest, $this->flag_iva, $this->flag_rit, $this->nome_med1, $this->nome_med2, $this->nome_med3, $this->nome_med4, $this->nome_med5, $this->perc_med1, $this->perc_med2, $this->perc_med3, $this->perc_med4, $this->perc_med5, $this->id_med1, $this->id_med2, $this->id_med3, $this->id_med4, $this->id_med5, $this->bollo, $this->importo_tot)){
+							if($stmt->fetch()){
+								return true;
+							}else{
+								echo("Errore: ".mysqli_error($this->conn));
+								return false;
+								}
+						}else{
+							echo("Errore: ".mysqli_error($this->conn));
+							return false;
+							}
+					}else{
+						echo("Errore: ".mysqli_error($this->conn));
+						return false;
+						}
+				}else{
+					echo("Errore: ".mysqli_error($this->conn));
+					return false;
+					}
 			}else{
-				echo("Errore: ".mysqli_error($this->conn));
-				return false;
-			}
-			
-		}else{
-			echo("Errore: ".mysqli_error($this->conn));
-			return false;
-		}
-	}
-	public function selectFatturaById($id){ //Seleziona La Fattura
-		if($stmt = $this->conn->prepare("SELECT ID, NUM_FAT, DATA, IMPORTO, FLAG_IVA, ID_PREST_EFF, FLAG_RITENUTA, BOLLO, IMPORTO_TOT FROM FATTURE WHERE ID = ? AND KCO=?")) {
-			$stmt->bind_param("ii", $id, $_SESSION['company_id']);
-            $stmt->execute(); // Esegue la query creata.
-            $stmt->store_result();
-			
-            if($stmt->num_rows == 1) { // se l'utente esiste
-				$stmt->bind_result($this->id, $this->numfattura, $this->data, $this->importo, $this->flag_iva, $this->id_prest_eff, $this->flag_rit, $this->bollo, $this->importo_tot);
-				$stmt->fetch();
-				
-				return true;
-			}else{
-				echo("Errore: ".mysqli_error($this->conn));
-				return false;
-			}
-			
-		}else{
-			echo("Errore: ".mysqli_error($this->conn));
-			return false;
-		}
-	}
-	
-	
-	public function modificaFattura($data,$importo,$flag_iva,$flag_rit,$id,$bollo,$importo_tot){ //Modifica Fattura
-		if($stmt = $this->conn->prepare("UPDATE FATTURE SET DATA = ?, IMPORTO = ?, FLAG_IVA = ?, FLAG_RITENUTA = ? ,BOLLO = ?, IMPORTO_TOT = ? WHERE ID = ? AND KCO= ?")) {
-				$stmt->bind_param("siiiiii", $data, $importo, $flag_iva, $flag_rit, $bollo, $importo_tot, $this->id, $_SESSION['company_id']);
-				if(!$stmt->execute()){
 				echo("Errore: ".mysqli_error($this->conn));
 				return false;
 				}
+		}else{
+			echo("Errore: ".mysqli_error($this->conn));
+			return false;
+			}
+	}
+	
+	public function selectFatturaById($id){ //Seleziona La Fattura
+		if($stmt = $this->conn->prepare("SELECT ID, DESCRIZIONE, NUM_FAT, ANNO_FAT, DATA_REG, DATA_FAT, IMPORTO, FLAG_IVA, ID_PREST_EFF, FLAG_RITENUTA, BOLLO, IMPORTO_TOT FROM FATTURE WHERE ID = ? AND KCO=?")){
+			if($stmt->bind_param("ii", $id, $_SESSION['company_id'])){
+				if($stmt->execute()){// Esegue la query creata.
+					if($stmt->store_result()){
+						if($stmt->num_rows == 1){ // se l'utente esiste
+								if($stmt->bind_result($this->id, $this->descrizione, $this->numfattura, $this->annofattura, $this->data_reg, $this->data_fat, $this->importo, $this->flag_iva, $this->id_prest_eff, $this->flag_rit, $this->bollo, $this->importo_tot)){
+									if($stmt->fetch()){
+										return true;
+									}else{
+										echo("Errore: ".mysqli_error($this->conn));
+										return false;
+										}
+								}else{
+									echo("Errore: ".mysqli_error($this->conn));
+									return false;
+									}	
+							}else{
+								echo("Errore: ".mysqli_error($this->conn));
+								return false;
+								}
+						}else{
+							echo("Errore: ".mysqli_error($this->conn));
+							return false;
+							}
+					}else{
+						echo("Errore: ".mysqli_error($this->conn));
+						return false;
+						}
+				}else{
+					echo("Errore: ".mysqli_error($this->conn));
+					return false;
+					}
+			}else{
+				echo("Errore: ".mysqli_error($this->conn));
+				return false;
+				}
+		}
+	
+	
+	public function modificaFattura($descrizione, $data_fat,$importo,$flag_iva,$flag_rit,$id,$bollo,$importo_tot){ //Modifica Fattura
+		if($stmt = $this->conn->prepare("UPDATE FATTURE SET DESCRIZIONE=?, DATA_FAT = ?, IMPORTO = ?, FLAG_IVA = ?, FLAG_RITENUTA = ? ,BOLLO = ?, IMPORTO_TOT = ? WHERE ID = ? AND KCO= ?")){
+				if($stmt->bind_param("ssiiiiii", $descrizione, $data_fat, $importo, $flag_iva, $flag_rit, $bollo, $importo_tot, $this->id, $_SESSION['company_id'])){
+					if(!$stmt->execute()){
+						echo("Errore: ".mysqli_error($this->conn));
+						return false;
+						}
+				}else{
+					echo("Errore: ".mysqli_error($this->conn));
+					return false;
+				}
+		}else{
+			echo("Errore: ".mysqli_error($this->conn));
+			return false;
 		}
 	}
 
 	public function rimuoviFattura(){ //Rimuove Fattura
 		if($stmt = $this->conn->prepare("UPDATE FATTURE SET ELIMINATO = NOW() WHERE ID = ? AND KCO = ?")){
-			$stmt->bind_param("ii", $this->id, $_SESSION['company_id']);
-			if(!$stmt->execute()){
+			if($stmt->bind_param("ii", $this->id, $_SESSION['company_id'])){
+				if($stmt->execute()){
+					return true;
+				}else{
+					echo("Errore: ".mysqli_error($this->conn));
+					return false;
+				}
+			}else{
 				echo("Errore: ".mysqli_error($this->conn));
 				return false;
-				}
+			}
+		}else{
+		echo("Errore: ".mysqli_error($this->conn));
+		return false;
 		}
 	}
-	public function aggiungiFattura($numfattura,$data,$importo,$flag_iva,$flag_rit,$bollo,$importo_tot){ //Aggiunge Fattura
-		if($stmt = $this->conn->prepare("INSERT INTO FATTURE SET NUM_FAT=?, DATA=?, IMPORTO=?, FLAG_IVA=?, ID_PREST_EFF=?, FLAG_RITENUTA=?, BOLLO = ?, IMPORTO_TOT = ? KCO=?"))
-			$stmt->bind_param("ssiiiii",$numfattura,$data,$importo,$flag_iva,$id_prest_eff,$flag_rit,$bollo, $importo_tot, $_SESSION['company_id']);
-			if(!$stmt->execute()){
+	
+	public function aggiungiFattura($descrizione, $data_reg, $data_fat,$importo,$flag_iva, $id_prest_eff, $flag_rit,$bollo,$importo_tot){ //Aggiunge Fattura
+		$anno_fat = date("Y", $data_fat);
+		$numfattura = $this->getLastId($anno_fat)+1;
+			if($stmt = $this->conn->prepare("INSERT INTO FATTURE SET DESCRIZIONE = ?, NUM_FAT=?, ANNO_FAT = ?, DATA_REG=?, DATA_FAT=?, IMPORTO=?, FLAG_IVA=?, ID_PREST_EFF=?, FLAG_RITENUTA=?, BOLLO = ?, IMPORTO_TOT = ?, KCO=?")){
+				if($stmt->bind_param("sssssisisiii", $descrizione, $numfattura,$anno_fat, $data_reg, $data_fat,$importo,$flag_iva,$id_prest_eff,$flag_rit,$bollo, $importo_tot, $_SESSION['company_id'])){
+					if($stmt->execute()){
+						return $this->conn->insert_id;
+					}else{
+						echo("Errore: ".mysqli_error($this->conn));
+						return false;
+					}
+				}else{
+					echo("Errore: ".mysqli_error($this->conn));
+					return false;
+				}
+			}else{
 				echo("Errore: ".mysqli_error($this->conn));
 				return false;
+			}
+			
+	}
+	
+	private function getLastId($year){
+		if($stmt = $this->conn->prepare("SELECT NUM_FAT FROM FATTURE WHERE ANNO_FAT = ? AND KCO = ? ORDER BY ID DESC LIMIT 1")) {
+			if($stmt->bind_param("si", $year, $_SESSION['company_id'])){
+				if($stmt->execute()){ // Esegue la query creata.
+					if($stmt->store_result()){
+						if($stmt->num_rows == 1) { // se l'utente esiste
+							if($stmt->bind_result($num_fat)){
+								if($stmt->fetch()){
+									return $num_fat;
+								}else{
+									echo("Errore: ".mysqli_error($this->conn));
+									return "0";
+								}
+							}else{
+								echo("Errore: ".mysqli_error($this->conn));
+								return false;
+							}
+						}else{
+							echo("Errore: ".mysqli_error($this->conn));
+							return false;
+						}
+			
+					}else{
+						echo("Errore: ".mysqli_error($this->conn));
+						return false;
+					}
+				}else{
+					echo("Errore: ".mysqli_error($this->conn));
+					return false;
 				}
+			}else{
+				echo("Errore: ".mysqli_error($this->conn));
+				return false;
+			}
+		}else{
+			echo("Errore: ".mysqli_error($this->conn));
+			return false;
+		}
 	}
 	
 		

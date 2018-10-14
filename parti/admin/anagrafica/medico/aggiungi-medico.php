@@ -19,7 +19,7 @@
 		  
 		<li class="fill" style="width: 10%; padding-right: 10px; padding-left: 10px;">
 		   <label class="description" for="element_1">Titolo</label>
-			<select name="titolo" type="text">
+			<select name="titolo" type="text" class="form-control">
 				<option value="SIG">Sig</option>
 				<option value="SIG.RA">Sig.ra</option>
 			</select>      
@@ -35,7 +35,7 @@
 		  		  
 		<li class="fill" style="width: 20%; padding-right: 10px; padding-left: 10px;">
 		   <label class="description" for="element_1">Tipo</label>
-			<select name="tipo" type="text">
+			<select name="tipo" type="text" class="form-control">
 				<option value="MEDICO">Medico</option>
 				<option value="COLLABORATORE">Collaboratore</option>
 			</select>      
@@ -83,7 +83,7 @@
 	
 		<li class="fill" style="width: 20%;">
 		   <label class="description">Fattura</label>
-		  	<select name="fattura" type="text">
+		  	<select name="fattura" type="text" class="form-control">
 				<option value="SI">Si</option>
 				<option value="NO">No</option>
 			</select>	   

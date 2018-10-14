@@ -7,6 +7,9 @@ require "Native/Paziente.php";
 require "Native/Prestazione.php";
 require "Native/PrestEff.php";
 require "Native/PrimaNota.php";
+require "Native/SocietaEsterna.php";
+require "Native/Societa.php";
+require "Native/GDoc.php"; 
 //Collection
 require "Collection/SearchFatture.php";
 require "Collection/SearchMedico.php";

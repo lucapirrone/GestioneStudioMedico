@@ -4,7 +4,15 @@
 		
 
 ?>
-
+<script>
+<?php
+if(!isset($_SESSION['action_token']) || !isset($action_token))	$action_token = $_SESSION['action_token'] = md5(uniqid(mt_rand(), true));	
+$url = "?action=request&action_code=3&action_token=".$action_token."&id_fattura=";
+?>
+function vediFattura(id){
+	window.location.replace("<?php echo $url; ?>"+id);
+}
+</script>
 <h2 class="title">Visualizza Fatture</h2>
 
 	
@@ -49,4 +57,6 @@
 	}
 	
 ?>
+
+
 

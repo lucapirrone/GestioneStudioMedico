@@ -168,6 +168,30 @@
 					"class-icon"=>"far fa-eye",
 					"default"=>false,
 					"visibility"=>false
+					),
+					array(
+					"nome"=>"Visualizza Societa",
+					"code"=>"visualizza-societa",
+					"url"=>"parti/admin/anagrafica/societa/visualizza-societa.php",
+					"class-icon"=>"far fa-eye",
+					"default"=>false,
+					"visibility"=>true
+					),
+					array(
+					"nome"=>"Aggiungi Societa",
+					"code"=>"aggiungi-societa",
+					"url"=>"parti/admin/anagrafica/societa/aggiungi-societa.php",
+					"class-icon"=>"fas fa-plus",
+					"default"=>false,
+					"visibility"=>false
+					),
+					array(
+					"nome"=>"Modifica Societa",
+					"code"=>"modifica-societa",
+					"url"=>"parti/admin/anagrafica/societa/modifica-societa.php",
+					"class-icon"=>"far fa-eye",
+					"default"=>false,
+					"visibility"=>false
 					)
 				)
 			),
